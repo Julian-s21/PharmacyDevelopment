@@ -17,6 +17,10 @@ services:
         sync: false
       - key: ORACLE_CONNECT_STRING
         sync: false
+      - key: ORACLE_WALLET_DIR
+        value: /etc/secrets
+      - key: ORACLE_WALLET_PASSWORD
+        sync: false
       - key: INITIAL_USER_EMAIL
         sync: false
       - key: INITIAL_USER_PASSWORD

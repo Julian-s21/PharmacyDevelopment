@@ -19,6 +19,16 @@ const GastoPlanilla = require('../models/gastoPlanilla.model');
 const ActivoFijo = require('../models/activoFijo.model');
 const FlujoEfectivo = require('../models/flujoEfectivo.model');
 
+const walletOptions = process.env.ORACLE_WALLET_DIR
+    ? {
+        configDir: process.env.ORACLE_WALLET_DIR,
+        walletLocation: process.env.ORACLE_WALLET_DIR,
+        ...(process.env.ORACLE_WALLET_PASSWORD
+            ? { walletPassword: process.env.ORACLE_WALLET_PASSWORD }
+            : {})
+    }
+    : {};
+
 const AppDataSource = new DataSource({
     type: 'oracle',
 
@@ -26,6 +36,7 @@ const AppDataSource = new DataSource({
     password: process.env.ORACLE_PASSWORD,
 
     connectString: process.env.ORACLE_CONNECT_STRING,
+    extra: walletOptions,
 
     entities: [
         Sucursal,
