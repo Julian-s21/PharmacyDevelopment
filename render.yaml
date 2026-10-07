@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: pharmasy-prueba
+    runtime: node
+    plan: free
+    healthCheckPath: /health
+    buildCommand: npm ci && npm --prefix pharmacyFrontend ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: ORACLE_USER
+        sync: false
+      - key: ORACLE_PASSWORD
+        sync: false
+      - key: ORACLE_CONNECT_STRING
+        sync: false
+      - key: INITIAL_USER_EMAIL
+        sync: false
+      - key: INITIAL_USER_PASSWORD
+        sync: false
+      - key: INITIAL_USER_BRANCH_ID
+        sync: false
+      - key: INITIAL_USER_NAME
+        sync: false
+      - key: INITIAL_USER_LAST_NAME
+        sync: false

@@ -1,0 +1,1058 @@
+/* =====================================================
+   SUCURSALES
+===================================================== */
+
+.sucursales-page {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    animation: sucursalesAppear 0.45s ease both;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.sucursales-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 12px 14px;
+    margin-bottom: 18px;
+
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    animation: headerAppear 0.55s ease both;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.sucursales-header:hover {
+    background: #000000;
+    border-color: #000000;
+
+    transform:
+        translateY(-4px)
+        scale(1.005);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Línea superior animada */
+
+.sucursales-header::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: #000000;
+
+    transition:
+        width 0.35s ease;
+}
+
+.sucursales-header:hover::before {
+    width: 100%;
+    background: #ffffff;
+}
+
+
+/* Efecto de brillo */
+
+.sucursales-header::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.08),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.55s ease;
+
+    pointer-events: none;
+}
+
+.sucursales-header:hover::after {
+    left: 130%;
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEL ENCABEZADO
+===================================================== */
+
+.sucursales-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Icono */
+
+.sucursales-header-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #000000;
+    color: #ffffff;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.sucursales-header:hover .sucursales-header-icon {
+    background: #ffffff;
+    color: #000000;
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+    box-shadow:
+        0 4px 12px rgba(255, 255, 255, 0.10);
+}
+
+.sucursales-header-icon svg {
+    font-size: 19px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.sucursales-header:hover .sucursales-header-icon svg {
+    transform: scale(1.08);
+}
+
+
+/* Información */
+
+.sucursales-header-information {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1;
+}
+
+
+/* Título */
+
+.sucursales-title {
+    color: #171717 !important;
+
+    font-size: 15px !important;
+    line-height: 19px !important;
+    font-weight: 700 !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursales-header:hover .sucursales-title {
+    color: #ffffff !important;
+    transform: translateX(2px);
+}
+
+
+/* Subtítulo */
+
+.sucursales-subtitle {
+    color: #929292 !important;
+
+    font-size: 9px !important;
+    line-height: 13px !important;
+
+    margin-top: 2px !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursales-header:hover .sucursales-subtitle {
+    color: rgba(255, 255, 255, 0.55) !important;
+    transform: translateX(2px);
+}
+
+
+/* =====================================================
+   BOTÓN NUEVA SUCURSAL
+===================================================== */
+
+.sucursales-add-button {
+    min-height: 34px !important;
+
+    padding:
+        7px 11px !important;
+
+    border-radius: 7px !important;
+
+    background: #000000 !important;
+    color: #ffffff !important;
+
+    font-size: 9px !important;
+    font-weight: 600 !important;
+
+    text-transform: none !important;
+
+    box-shadow: none !important;
+
+    position: relative;
+    z-index: 2;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease !important;
+}
+
+.sucursales-add-button:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+
+    transform:
+        translateY(-2px)
+        scale(1.02);
+
+    box-shadow:
+        0 6px 14px rgba(255, 255, 255, 0.12) !important;
+}
+
+.sucursales-add-button svg {
+    font-size: 16px !important;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.sucursales-add-button:hover svg {
+    transform:
+        rotate(90deg)
+        scale(1.05);
+}
+
+
+/* =====================================================
+   PANEL PRINCIPAL
+===================================================== */
+
+.sucursales-panel {
+    width: 100%;
+
+    background: #ffffff !important;
+
+    border:
+        1px solid #e5e5e5;
+
+    border-radius:
+        10px !important;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04) !important;
+
+    overflow: hidden;
+
+    position: relative;
+
+    animation:
+        panelAppear 0.55s ease 0.12s both;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursales-panel:hover {
+    border-color: #d5d5d5;
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* =====================================================
+   BARRA DE HERRAMIENTAS
+===================================================== */
+
+.sucursales-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 14px 17px;
+
+    border-bottom:
+        1px solid #eeeeee;
+}
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.sucursales-search {
+    width: 300px;
+}
+
+.sucursales-search .MuiOutlinedInput-root {
+    height: 34px;
+
+    border-radius: 7px;
+
+    background: #fafafa;
+
+    font-size: 9px;
+
+    transition:
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.sucursales-search .MuiOutlinedInput-root:hover {
+    background: #f5f5f5;
+}
+
+.sucursales-search .MuiOutlinedInput-root.Mui-focused {
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.sucursales-search .MuiOutlinedInput-notchedOutline {
+    border-color: #dddddd !important;
+
+    transition:
+        border-color 0.25s ease;
+}
+
+.sucursales-search .MuiOutlinedInput-root:hover
+.MuiOutlinedInput-notchedOutline {
+    border-color: #bbbbbb !important;
+}
+
+.sucursales-search .MuiOutlinedInput-root.Mui-focused
+.MuiOutlinedInput-notchedOutline {
+    border-color: #000000 !important;
+}
+
+.sucursales-search input {
+    color: #222222;
+
+    font-size: 9px;
+
+    padding:
+        8px 8px 8px 0;
+}
+
+.sucursales-search input::placeholder {
+    color: #999999;
+
+    opacity: 1;
+}
+
+.sucursales-search .MuiInputAdornment-root {
+    margin-right: 6px;
+}
+
+.sucursales-search .MuiInputAdornment-root svg {
+    color: #777777;
+
+    font-size: 17px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursales-search .MuiOutlinedInput-root.Mui-focused
+.MuiInputAdornment-root svg {
+    color: #000000;
+
+    transform: scale(1.08);
+}
+
+
+/* Cantidad */
+
+.sucursales-count {
+    color: #999999 !important;
+
+    font-size: 8px !important;
+    font-weight: 500 !important;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   TABLA
+===================================================== */
+
+.sucursales-table-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =====================================================
+   ENCABEZADO DE TABLA
+===================================================== */
+
+.sucursales-table-header {
+    min-width: 700px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(240px, 1.4fr)
+        minmax(200px, 1.2fr)
+        120px
+        110px;
+
+    align-items: center;
+
+    padding:
+        11px 17px;
+
+    background: #fafafa;
+
+    border-bottom:
+        1px solid #eeeeee;
+}
+
+.table-column {
+    min-width: 0;
+}
+
+.sucursales-table-header .table-column {
+    color: #888888;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing:
+        0.35px;
+}
+
+.column-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* =====================================================
+   CUERPO DE TABLA
+===================================================== */
+
+.sucursales-table-body {
+    min-width: 700px;
+}
+
+
+/* =====================================================
+   FILA
+===================================================== */
+
+.sucursal-row {
+    min-height: 65px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(240px, 1.4fr)
+        minmax(200px, 1.2fr)
+        120px
+        110px;
+
+    align-items: center;
+
+    padding:
+        0 17px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+    position: relative;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.sucursal-row:last-child {
+    border-bottom: none;
+}
+
+.sucursal-row:hover {
+    background: #000000;
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =====================================================
+   INFORMACIÓN DE SUCURSAL
+===================================================== */
+
+.sucursal-name-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+
+/* Icono de sucursal */
+
+.sucursal-icon {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #f1f1f1;
+    color: #000000;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursal-icon svg {
+    font-size: 16px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.sucursal-row:hover .sucursal-icon {
+    background: #ffffff;
+    color: #000000;
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+}
+
+.sucursal-row:hover .sucursal-icon svg {
+    transform: scale(1.08);
+}
+
+
+/* Nombre */
+
+.sucursal-name {
+    color: #222222 !important;
+
+    font-size: 10px !important;
+    line-height: 14px !important;
+
+    font-weight: 600 !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursal-row:hover .sucursal-name {
+    color: #ffffff !important;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ID */
+
+.sucursal-id {
+    color: #aaaaaa !important;
+
+    font-size: 7px !important;
+    line-height: 11px !important;
+
+    margin-top: 1px !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursal-row:hover .sucursal-id {
+    color: rgba(255, 255, 255, 0.45) !important;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* =====================================================
+   UBICACIÓN
+===================================================== */
+
+.location-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 0;
+}
+
+.location-wrapper svg {
+    flex-shrink: 0;
+
+    color: #888888;
+
+    font-size: 15px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.location-wrapper p {
+    color: #777777;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sucursal-row:hover .location-wrapper svg {
+    color: #ffffff;
+
+    transform:
+        scale(1.08);
+}
+
+.sucursal-row:hover .location-wrapper p {
+    color: rgba(255, 255, 255, 0.65);
+
+    transform:
+        translateX(2px);
+}
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+.status-badge {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        4px 7px;
+
+    border-radius: 5px;
+
+    font-size: 7px;
+    font-weight: 600;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Activa */
+
+.status-active {
+    background: #eeeeee;
+    color: #222222;
+}
+
+
+/* Inactiva */
+
+.status-inactive {
+    background: #f5f5f5;
+    color: #999999;
+}
+
+
+/* Punto */
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #222222;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.status-inactive .status-dot {
+    background: #999999;
+}
+
+
+/* Hover fila */
+
+.sucursal-row:hover .status-badge {
+    background: #ffffff;
+
+    color: #000000;
+
+    transform:
+        translateY(-1px);
+}
+
+.sucursal-row:hover .status-dot {
+    background: #000000;
+
+    transform:
+        scale(1.15);
+}
+
+
+/* =====================================================
+   BOTONES DE ACCIÓN
+===================================================== */
+
+.action-button {
+    width: 29px !important;
+    height: 29px !important;
+
+    margin-left: 3px !important;
+
+    color: #888888 !important;
+
+    border-radius: 6px !important;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease !important;
+}
+
+.action-button svg {
+    font-size: 16px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.action-button:hover {
+    background: #eeeeee !important;
+
+    color: #000000 !important;
+
+    transform:
+        translateY(-2px);
+}
+
+.sucursal-row:hover .action-button {
+    color: #ffffff !important;
+}
+
+.sucursal-row:hover .action-button:hover {
+    background: #ffffff !important;
+
+    color: #000000 !important;
+
+    transform:
+        translateY(-2px)
+        scale(1.05);
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes sucursalesAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes headerAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes panelAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE FILAS
+===================================================== */
+
+.sucursal-row {
+    animation:
+        rowAppear 0.45s ease both;
+}
+
+.sucursal-row:nth-child(1) {
+    animation-delay: 0.18s;
+}
+
+.sucursal-row:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.sucursal-row:nth-child(3) {
+    animation-delay: 0.32s;
+}
+
+.sucursal-row:nth-child(4) {
+    animation-delay: 0.39s;
+}
+
+@keyframes rowAppear {
+
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .sucursales-header {
+        align-items: flex-start;
+    }
+
+    .sucursales-add-button {
+        flex-shrink: 0;
+    }
+
+    .sucursales-search {
+        width: 260px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .sucursales-header {
+        padding: 11px 12px;
+
+        gap: 10px;
+
+        margin-bottom: 14px;
+    }
+
+    .sucursales-header:hover {
+        transform:
+            translateY(-2px)
+            scale(1.003);
+    }
+
+    .sucursales-header-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sucursales-header-icon svg {
+        font-size: 17px;
+    }
+
+    .sucursales-title {
+        font-size: 13px !important;
+        line-height: 17px !important;
+    }
+
+    .sucursales-subtitle {
+        font-size: 8px !important;
+        line-height: 11px !important;
+    }
+
+    .sucursales-add-button {
+        min-height: 32px !important;
+
+        padding:
+            6px 8px !important;
+
+        font-size: 8px !important;
+    }
+
+    .sucursales-add-button svg {
+        font-size: 14px !important;
+    }
+
+    .sucursales-toolbar {
+        align-items: stretch;
+
+        flex-direction: column;
+
+        padding:
+            12px 13px;
+
+        gap: 9px;
+    }
+
+    .sucursales-search {
+        width: 100%;
+    }
+
+    .sucursales-count {
+        align-self: flex-end;
+    }
+
+    .sucursales-table-header {
+        padding:
+            10px 13px;
+    }
+
+    .sucursal-row {
+        padding:
+            0 13px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .sucursales-header {
+        align-items: flex-start;
+    }
+
+    .sucursales-header-left {
+        gap: 9px;
+    }
+
+    .sucursales-subtitle {
+        max-width: 180px;
+    }
+
+    .sucursales-add-button {
+        width: 34px !important;
+        min-width: 34px !important;
+
+        padding: 0 !important;
+
+        font-size: 0 !important;
+    }
+
+    .sucursales-add-button .MuiButton-startIcon {
+        margin: 0 !important;
+    }
+
+    .sucursales-add-button svg {
+        font-size: 17px !important;
+    }
+}

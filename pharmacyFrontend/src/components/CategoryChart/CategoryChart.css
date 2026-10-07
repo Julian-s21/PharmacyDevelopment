@@ -1,0 +1,291 @@
+/* ===================================================== */
+/*                    CATEGORY CHART                     */
+/* ===================================================== */
+
+.category-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 245px;
+    padding: 0 10px;
+
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background-color 0.35s ease;
+
+    animation:
+        categoryChartAppear 0.65s ease both;
+}
+
+
+
+/* Hover limpio, sin líneas */
+.category-chart:hover {
+    background: #ffffff;
+
+    transform:
+        translateY(-4px)
+        scale(1.01);
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* Animación suave del contenido */
+.category-chart > * {
+    transition:
+        transform 0.35s ease;
+}
+
+.category-chart:hover > * {
+    transform:
+        scale(1.015);
+}
+
+/* Leyenda */
+.category-chart .MuiChartsLegend-root {
+    font-size: 8px;
+    color: #555555;
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.category-chart:hover .MuiChartsLegend-root {
+    color: #333333;
+}
+
+/* Elementos de la leyenda */
+.category-chart .MuiChartsLegend-series {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.category-chart .MuiChartsLegend-series:hover {
+    opacity: 1;
+
+    transform:
+        translateX(2px);
+}
+
+/* Textos del gráfico */
+.category-chart text {
+    transition:
+        fill 0.25s ease;
+}
+
+/* Entrada del gráfico */
+@keyframes categoryChartAppear {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ===================================================== */
+/*                    EFECTO DE BRILLO                   */
+/* ===================================================== */
+
+.category-chart::after {
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 45%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 0, 0, 0.035),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.55s ease;
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+
+.category-chart:hover::after {
+    left: 130%;
+}
+
+
+/* ===================================================== */
+/*                 CONTENIDO DEL GRÁFICO                 */
+/* ===================================================== */
+
+.category-chart > * {
+    transition:
+        transform 0.30s ease;
+}
+
+
+.category-chart:hover > * {
+    transform:
+        scale(1.015);
+}
+
+
+/* ===================================================== */
+/*                       LEYENDA                         */
+/* ===================================================== */
+
+.category-chart .MuiChartsLegend-root {
+    font-size: 8px;
+
+    color: #555555;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.category-chart:hover .MuiChartsLegend-root {
+    color: #000000;
+}
+
+
+/* ===================================================== */
+/*                 ELEMENTOS DE LEYENDA                  */
+/* ===================================================== */
+
+.category-chart .MuiChartsLegend-series {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.category-chart .MuiChartsLegend-series:hover {
+    opacity: 1;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ===================================================== */
+/*                   TEXTO DEL GRÁFICO                   */
+/* ===================================================== */
+
+.category-chart text {
+    fill: #555555;
+
+    transition:
+        fill 0.25s ease;
+}
+
+
+.category-chart:hover text {
+    fill: #000000;
+}
+
+
+/* ===================================================== */
+/*                   EJES DEL GRÁFICO                    */
+/* ===================================================== */
+
+.category-chart .MuiChartsAxis-line {
+    stroke: #999999;
+}
+
+
+.category-chart .MuiChartsAxis-tick {
+    stroke: #999999;
+}
+
+
+.category-chart .MuiChartsGrid-line {
+    stroke: #e5e5e5;
+
+    transition:
+        stroke 0.25s ease;
+}
+
+
+.category-chart:hover .MuiChartsGrid-line {
+    stroke: #d0d0d0;
+}
+
+
+/* ===================================================== */
+/*                ANIMACIÓN DE ENTRADA                   */
+/* ===================================================== */
+
+@keyframes categoryChartAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ===================================================== */
+/*                       RESPONSIVE                      */
+/* ===================================================== */
+
+@media (max-width: 600px) {
+
+    .category-chart {
+        min-height: 220px;
+
+        padding:
+            0 6px;
+    }
+
+
+    .category-chart:hover {
+        transform:
+            translateY(-2px);
+    }
+
+
+    .category-chart .MuiChartsLegend-root {
+        font-size: 7px;
+    }
+
+}

@@ -1,0 +1,72 @@
+.main-layout {
+    min-height: 100vh;
+    background: #f6f7f9;
+}
+
+.main-content {
+    margin-left: 220px;
+
+    padding: 74px 26px 35px;
+
+    min-height: calc(100vh - 56px);
+}
+
+/* =====================================================
+   LAYOUT GENERAL
+===================================================== */
+
+.main-layout {
+    min-height: 100vh;
+
+    background: #f6f7f9;
+}
+
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+===================================================== */
+
+.main-content {
+    margin-left: 220px;
+
+    padding: 74px 26px 35px;
+
+    min-height: calc(100vh - 56px);
+
+    box-sizing: border-box;
+
+    transition:
+        margin-left 0.3s ease;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 72px 20px 30px;
+
+        min-height: calc(100vh - 56px);
+    }
+
+}
+
+
+/* =====================================================
+   TELÉFONO
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .main-content {
+        padding: 70px 12px 25px;
+
+        min-height: calc(100vh - 52px);
+    }
+
+}

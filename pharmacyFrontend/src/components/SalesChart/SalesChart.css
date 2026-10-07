@@ -1,0 +1,248 @@
+/* =====================================================
+   SALES CHART
+===================================================== */
+
+.sales-chart {
+    width: 100%;
+
+    padding:
+        4px 8px 2px;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background-color 0.35s ease;
+
+    animation:
+        salesChartAppear 0.65s ease both;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.sales-chart:hover {
+
+    background: #ffffff;
+
+    transform:
+        translateY(-4px)
+        scale(1.01);
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================================================
+   EFECTO DE BRILLO
+===================================================== */
+
+.sales-chart::after {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 45%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 0, 0, 0.035),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.55s ease;
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+
+.sales-chart:hover::after {
+
+    left: 130%;
+}
+
+
+/* =====================================================
+   CONTENIDO DEL GRÁFICO
+===================================================== */
+
+.sales-chart > * {
+
+    transition:
+        transform 0.30s ease;
+}
+
+
+.sales-chart:hover > * {
+
+    transform:
+        scale(1.015);
+}
+
+
+/* =====================================================
+   LEYENDA
+===================================================== */
+
+.sales-chart .MuiChartsLegend-root {
+
+    font-size: 8px;
+
+    color: #555555;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.sales-chart:hover .MuiChartsLegend-root {
+
+    color: #333333;
+}
+
+
+/* =====================================================
+   ELEMENTOS DE LA LEYENDA
+===================================================== */
+
+.sales-chart .MuiChartsLegend-series {
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.sales-chart .MuiChartsLegend-series:hover {
+
+    opacity: 1;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* =====================================================
+   TEXTO DEL GRÁFICO
+===================================================== */
+
+.sales-chart text {
+
+    fill: #555555;
+
+    transition:
+        fill 0.25s ease;
+}
+
+
+.sales-chart:hover text {
+
+    fill: #333333;
+}
+
+
+/* =====================================================
+   LÍNEAS DE REFERENCIA
+===================================================== */
+
+.sales-chart .MuiChartsGrid-line {
+
+    stroke: #e5e5e5;
+
+    transition:
+        stroke 0.25s ease;
+}
+
+
+.sales-chart:hover .MuiChartsGrid-line {
+
+    stroke: #d5d5d5;
+}
+
+
+/* =====================================================
+   EJE
+===================================================== */
+
+.sales-chart .MuiChartsAxis-line {
+
+    stroke: #999999;
+}
+
+
+.sales-chart .MuiChartsAxis-tick {
+
+    stroke: #999999;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE ENTRADA
+===================================================== */
+
+@keyframes salesChartAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .sales-chart {
+
+        padding:
+            4px 4px 2px;
+    }
+
+    .sales-chart:hover {
+
+        transform:
+            translateY(-2px)
+            scale(1.005);
+    }
+}

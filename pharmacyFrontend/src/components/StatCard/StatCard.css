@@ -1,0 +1,391 @@
+/* =====================================================
+   STAT CARD
+===================================================== */
+
+.stat-card {
+    background: #ffffff !important;
+
+    border: 1px solid #e5e5e5 !important;
+
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04) !important;
+
+    animation:
+        cardAppear 0.55s ease both;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease !important;
+}
+
+
+/* =====================================================
+   EFECTO HOVER
+===================================================== */
+
+.stat-card:hover {
+
+    transform:
+        translateY(-4px) scale(1.01);
+
+    background: #000000 !important;
+
+    border-color: #000000 !important;
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.18) !important;
+}
+
+
+/* =====================================================
+   BARRA SUPERIOR ANIMADA
+===================================================== */
+
+.stat-card::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #000000;
+
+    transition:
+        width 0.3s ease;
+}
+
+
+.stat-card:hover::before {
+
+    width: 100%;
+
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.stat-card-content {
+
+    padding: 15px !important;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+/* =====================================================
+   PARTE SUPERIOR
+===================================================== */
+
+.stat-card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.stat-title {
+
+    color: #8b8b8b;
+
+    font-size: 9px !important;
+
+    font-weight: 500 !important;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.stat-card:hover .stat-title {
+
+    color: #bdbdbd;
+}
+
+
+/* =====================================================
+   VALOR
+===================================================== */
+
+.stat-value {
+
+    color: #151515;
+
+    font-size: 20px !important;
+
+    line-height: 24px !important;
+
+    font-weight: 750 !important;
+
+    margin-top: 4px !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.stat-card:hover .stat-value {
+
+    color: #ffffff;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* =====================================================
+   ICONO
+===================================================== */
+
+.stat-icon {
+
+    width: 31px;
+
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f2f2f2;
+
+    color: #000000;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DEL ICONO
+===================================================== */
+
+.stat-icon svg {
+
+    font-size: 16px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.stat-card:hover .stat-icon {
+
+    background: #ffffff;
+
+    color: #000000;
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+}
+
+
+.stat-card:hover .stat-icon svg {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.stat-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 11px;
+
+    gap: 6px;
+}
+
+
+/* =====================================================
+   TENDENCIA
+===================================================== */
+
+.stat-trend {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1px;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.stat-trend svg {
+
+    font-size: 12px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.stat-card:hover .stat-trend svg {
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =====================================================
+   TENDENCIA POSITIVA
+===================================================== */
+
+.stat-trend-positive {
+
+    color: #111111;
+}
+
+
+/* =====================================================
+   TENDENCIA NEGATIVA
+===================================================== */
+
+.stat-trend-negative {
+
+    color: #111111;
+}
+
+
+/* =====================================================
+   TENDENCIA EN HOVER
+===================================================== */
+
+.stat-card:hover .stat-trend-positive,
+.stat-card:hover .stat-trend-negative {
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   DESCRIPCIÓN
+===================================================== */
+
+.stat-description {
+
+    color: #a0a0a0;
+
+    font-size: 8px !important;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.stat-card:hover .stat-description {
+
+    color: #777777;
+}
+
+
+/* =====================================================
+   EFECTO DE BRILLO
+===================================================== */
+
+.stat-card::after {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 50%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.08),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.5s ease;
+
+    pointer-events: none;
+}
+
+
+.stat-card:hover::after {
+
+    left: 130%;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE ENTRADA
+===================================================== */
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}

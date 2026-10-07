@@ -1,0 +1,61 @@
+.configuracion-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 24px 48px;
+}
+
+.configuracion-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.configuracion-heading .MuiTypography-h4 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+}
+
+.configuracion-heading-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: #fff;
+    background: #111827;
+}
+
+.configuracion-card {
+    display: grid;
+    gap: 20px;
+    padding: 26px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.configuracion-card > .MuiTypography-h6 {
+    font-weight: 700;
+}
+
+.configuracion-description {
+    margin-top: -16px !important;
+    color: #6b7280;
+    font-size: 0.9rem !important;
+}
+
+.configuracion-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 4px;
+}
+
+@media (max-width: 600px) {
+    .configuracion-page { padding: 20px 14px 36px; }
+    .configuracion-card { padding: 20px 16px; }
+    .configuracion-actions { flex-direction: column-reverse; }
+    .configuracion-actions button { width: 100%; }
+}

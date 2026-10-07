@@ -1,0 +1,336 @@
+/* ===================================================== */
+/*                  DASHBOARD HEADER CARD                */
+/* ===================================================== */
+
+.dashboard-header-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+    margin-bottom: 18px;
+
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    animation:
+        dashboardHeaderAppear 0.55s ease both;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* ===================================================== */
+/*                         HOVER                         */
+/* ===================================================== */
+
+.dashboard-header-card:hover {
+    background: #000000;
+    border-color: #000000;
+
+    transform:
+        translateY(-4px)
+        scale(1.005);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ===================================================== */
+/*                    LÍNEA SUPERIOR                     */
+/* ===================================================== */
+
+.dashboard-header-card::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: #000000;
+
+    transition:
+        width 0.35s ease;
+}
+
+
+.dashboard-header-card:hover::before {
+    width: 100%;
+    background: #ffffff;
+}
+
+
+/* ===================================================== */
+/*                    EFECTO DE BRILLO                   */
+/* ===================================================== */
+
+.dashboard-header-card::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.08),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.5s ease;
+
+    pointer-events: none;
+}
+
+
+.dashboard-header-card:hover::after {
+    left: 130%;
+}
+
+
+/* ===================================================== */
+/*                         ICONO                         */
+/* ===================================================== */
+
+.dashboard-header-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #000000;
+    color: #ffffff;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.dashboard-header-card:hover .dashboard-header-icon {
+    background: #ffffff;
+    color: #000000;
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+
+    box-shadow:
+        0 4px 12px rgba(255, 255, 255, 0.10);
+}
+
+
+.dashboard-header-icon svg {
+    font-size: 19px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.dashboard-header-card:hover .dashboard-header-icon svg {
+    transform:
+        scale(1.08);
+}
+
+
+/* ===================================================== */
+/*                      INFORMACIÓN                      */
+/* ===================================================== */
+
+.dashboard-header-information {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1;
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ===================================================== */
+/*                        TÍTULO                         */
+/* ===================================================== */
+
+.dashboard-header-title {
+    color: #171717 !important;
+
+    font-size: 15px !important;
+    line-height: 19px !important;
+
+    font-weight: 700 !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.dashboard-header-card:hover .dashboard-header-title {
+    color: #ffffff !important;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ===================================================== */
+/*                       SUBTÍTULO                       */
+/* ===================================================== */
+
+.dashboard-header-subtitle {
+    color: #929292 !important;
+
+    font-size: 9px !important;
+    line-height: 13px !important;
+
+    margin-top: 2px !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.dashboard-header-card:hover .dashboard-header-subtitle {
+    color:
+        rgba(255, 255, 255, 0.55) !important;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ===================================================== */
+/*                  ANIMACIÓN DE ENTRADA                 */
+/* ===================================================== */
+
+@keyframes dashboardHeaderAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ===================================================== */
+/*                    ANIMACIÓN DEL ICONO                */
+/* ===================================================== */
+
+.dashboard-header-icon {
+    animation:
+        dashboardIconAppear 0.6s ease both;
+}
+
+
+@keyframes dashboardIconAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.75)
+            rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+/* ===================================================== */
+/*                       RESPONSIVE                      */
+/* ===================================================== */
+
+@media (max-width: 600px) {
+
+    .dashboard-header-card {
+        padding: 11px 12px;
+
+        gap: 10px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .dashboard-header-card:hover {
+        transform:
+            translateY(-2px)
+            scale(1.003);
+    }
+
+
+    .dashboard-header-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .dashboard-header-icon svg {
+        font-size: 17px;
+    }
+
+
+    .dashboard-header-title {
+        font-size: 13px !important;
+        line-height: 17px !important;
+    }
+
+
+    .dashboard-header-subtitle {
+        font-size: 8px !important;
+        line-height: 11px !important;
+    }
+
+}

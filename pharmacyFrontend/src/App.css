@@ -1,0 +1,4 @@
+#root {
+    min-height: 100vh;
+}
+.auth-loading{min-height:100vh;display:grid;place-items:center;color:#596579;font:500 14px Inter,Roboto,Arial,sans-serif}

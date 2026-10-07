@@ -1,0 +1,39 @@
+{
+  "name": "pharmasy-development",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "build": "npm --prefix pharmacyFrontend run build",
+    "typeorm": "typeorm",
+    "migration:generate": "typeorm migration:generate -d src/config/database.js",
+    "migration:run": "typeorm migration:run -d src/config/database.js",
+    "migration:revert": "typeorm migration:revert -d src/config/database.js",
+    "migration:show": "typeorm migration:show -d src/config/database.js",
+    "usuario:administrador": "node src/scripts/crearAdministrador.js",
+    "ver-relaciones": "node src/scripts/verRelaciones.js",
+    "ver-fks": "node src/scripts/verForeignKeys.js",
+    "ver-huerfanos": "node src/scripts/verDatosHuerfanos.js",
+    "ver-inventario": "node src/scripts/verInventarioProblematico.js",
+    "limpiar-inventario": "node src/scripts/limpiarInventarioHuerfano.js",
+    "eliminar-fk-parcial": "node src/scripts/eliminarFkParcial.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "oracledb": "^7.0.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

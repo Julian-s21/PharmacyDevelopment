@@ -1,0 +1,245 @@
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    background: #ffffff !important;
+
+    color: #1b2230 !important;
+
+    box-shadow:
+        0 1px 0 rgba(20, 30, 50, 0.06) !important;
+
+    z-index: 1200 !important;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.header-toolbar {
+    min-height: 56px !important;
+
+    height: 56px;
+
+    padding-left: 240px !important;
+
+    padding-right: 20px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px;
+}
+
+
+/* =====================================================
+   BOTÓN MENÚ
+===================================================== */
+
+.header-menu-button {
+    display: none !important;
+
+    color: #344054 !important;
+}
+
+
+/* =====================================================
+   BIENVENIDA
+===================================================== */
+
+.header-welcome {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.welcome-title {
+    font-size: 13px !important;
+
+    line-height: 16px !important;
+
+    font-weight: 700 !important;
+
+    color: #202735;
+}
+
+.welcome-subtitle {
+    color: #98a0ae;
+
+    font-size: 8px !important;
+
+    line-height: 11px !important;
+
+    margin-top: 1px !important;
+}
+
+
+/* =====================================================
+   ESPACIO
+===================================================== */
+
+.header-spacer {
+    flex: 1;
+}
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.header-search {
+    width: 180px;
+}
+
+.header-search .MuiOutlinedInput-root {
+    height: 32px;
+
+    border-radius: 7px;
+
+    background: #f7f8fa;
+
+    font-size: 10px;
+}
+
+.header-search .MuiOutlinedInput-notchedOutline {
+    border-color: #e5e7eb;
+}
+
+.header-search input {
+    padding: 6px 7px;
+}
+
+.header-search svg {
+    font-size: 15px;
+
+    color: #98a0ae;
+}
+
+
+/* =====================================================
+   NOTIFICACIONES
+===================================================== */
+
+.notification-button {
+    position: relative;
+
+    color: #667085 !important;
+
+    padding: 6px !important;
+}
+
+.notification-button svg {
+    font-size: 19px;
+}
+
+.notification-dot {
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    top: 6px;
+
+    right: 6px;
+
+    background: #ef4444;
+
+    border-radius: 50%;
+
+    border: 1px solid #ffffff;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .header-toolbar {
+        padding-left: 235px !important;
+    }
+
+    .header-search {
+        width: 150px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .header-toolbar {
+        min-height: 56px !important;
+
+        height: 56px;
+
+        padding-left: 14px !important;
+
+        padding-right: 14px !important;
+    }
+
+    .header-menu-button {
+        display: inline-flex !important;
+    }
+
+    .header-search {
+        width: 150px;
+    }
+}
+
+
+/* =====================================================
+   TELÉFONO
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .header-toolbar {
+        height: 52px;
+
+        min-height: 52px !important;
+
+        padding-left: 8px !important;
+
+        padding-right: 8px !important;
+
+        gap: 5px;
+    }
+
+    .header-search {
+        width: 34px;
+    }
+
+    .header-search input {
+        display: none;
+    }
+
+    .header-search .MuiOutlinedInput-root {
+        width: 34px;
+
+        padding: 0;
+    }
+
+    .header-search .MuiInputAdornment-root {
+        margin: 0 auto;
+    }
+
+    .welcome-title {
+        font-size: 11px !important;
+    }
+
+    .welcome-subtitle {
+        display: none;
+    }
+
+}
