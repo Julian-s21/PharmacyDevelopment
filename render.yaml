@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     healthCheckPath: /health
-    buildCommand: npm ci && npm --prefix pharmacyFrontend ci && npm run build
+    buildCommand: npm ci --include=dev && npm --prefix pharmacyFrontend ci --include=dev && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -20,14 +20,4 @@ services:
       - key: ORACLE_WALLET_DIR
         value: /etc/secrets
       - key: ORACLE_WALLET_PASSWORD
-        sync: false
-      - key: INITIAL_USER_EMAIL
-        sync: false
-      - key: INITIAL_USER_PASSWORD
-        sync: false
-      - key: INITIAL_USER_BRANCH_ID
-        sync: false
-      - key: INITIAL_USER_NAME
-        sync: false
-      - key: INITIAL_USER_LAST_NAME
         sync: false
