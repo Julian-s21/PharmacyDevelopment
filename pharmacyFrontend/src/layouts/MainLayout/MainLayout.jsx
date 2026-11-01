@@ -26,6 +26,7 @@ function MainLayout({ children, usuario, onLogout }) {
 
             <Header
                 onMenuClick={abrirMenu}
+                usuario={usuario}
             />
 
             <Sidebar

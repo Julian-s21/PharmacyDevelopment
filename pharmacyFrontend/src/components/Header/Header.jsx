@@ -17,7 +17,11 @@ import {
 
 import './Header.css';
 
-function Header({ onMenuClick }) {
+function Header({ onMenuClick, usuario }) {
+    const nombreUsuario = usuario?.Nombre_Completo
+        || `${usuario?.Nombre_Usuario || ''} ${usuario?.Apellido_Usuario || ''}`.trim()
+        || usuario?.Correo_Usuario
+        || 'Usuario';
 
     return (
         <AppBar
@@ -37,7 +41,7 @@ function Header({ onMenuClick }) {
                 <Box className="header-welcome">
 
                     <Typography className="welcome-title">
-                        Bienvenido de nuevo 👋
+                        Bienvenido, {nombreUsuario}
                     </Typography>
 
                     <Typography className="welcome-subtitle">
