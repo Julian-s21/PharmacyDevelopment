@@ -55,12 +55,14 @@ function Finanzas() {
 
     useEffect(() => { cargarDatos(); }, [cargarDatos]);
 
-    const usuariosSucursal = useMemo(() => usuarios.filter((usuario) => Number(usuario.ID_Sucursal ?? usuario.sucursal?.ID_Sucursal) === Number(sucursalSeleccionada)), [usuarios, sucursalSeleccionada]);
+    // El responsable puede registrar movimientos en cualquier sucursal. La
+    // sucursal del movimiento se guarda por separado en ID_Sucursal.
+    const usuariosResponsables = usuarios;
     useEffect(() => {
-        if (!usuariosSucursal.some((usuario) => String(usuario.ID_Usuario) === usuarioSeleccionado)) {
-            setUsuarioSeleccionado(String(usuariosSucursal[0]?.ID_Usuario || ''));
+        if (!usuariosResponsables.some((usuario) => String(usuario.ID_Usuario) === usuarioSeleccionado)) {
+            setUsuarioSeleccionado(String(usuariosResponsables[0]?.ID_Usuario || ''));
         }
-    }, [usuariosSucursal, usuarioSeleccionado]);
+    }, [usuariosResponsables, usuarioSeleccionado]);
 
     const movimientosFiltrados = useMemo(() => movimientos
         .filter((movimiento) => !filtroSucursal || Number(movimiento.ID_Sucursal ?? movimiento.sucursal?.ID_Sucursal) === Number(filtroSucursal))
@@ -99,6 +101,7 @@ function Finanzas() {
             const datos = await respuesta.json();
             if (!respuesta.ok) throw new Error(datos.mensaje || datos.errores?.join(' ') || 'No se pudo registrar el movimiento financiero.');
             setExito(`${tipo === 'INGRESO' ? 'Ingreso' : 'Egreso'} registrado correctamente.`);
+            setFiltroSucursal(String(sucursalSeleccionada));
             setConcepto('');
             setMonto('');
             setFecha(fechaLocalActual());
@@ -136,8 +139,8 @@ function Finanzas() {
                         <div className="finanzas-type-toggle" role="group" aria-label="Tipo de movimiento"><button type="button" className={tipo === 'INGRESO' ? 'active' : ''} onClick={() => setTipo('INGRESO')}><ArrowDownwardRounded /> Ingreso</button><button type="button" className={tipo === 'EGRESO' ? 'active' : ''} onClick={() => setTipo('EGRESO')}><ArrowUpwardRounded /> Egreso</button></div>
                         <label className="finanzas-field">Concepto<input required maxLength="250" value={concepto} onChange={(event) => setConcepto(event.target.value)} placeholder={tipo === 'INGRESO' ? 'Ej. Venta de productos' : 'Ej. Pago de servicios'} /></label>
                         <div className="finanzas-form-row"><label className="finanzas-field">Monto (Q)<input required type="number" min="0" step="0.01" value={monto} onChange={(event) => setMonto(event.target.value)} placeholder="0.00" /></label><label className="finanzas-field">Fecha y hora<input required type="datetime-local" value={fecha} onChange={(event) => setFecha(event.target.value)} /></label></div>
-                        <label className="finanzas-field">Responsable<select required value={usuarioSeleccionado} onChange={(event) => setUsuarioSeleccionado(event.target.value)}><option value="">Selecciona usuario</option>{usuariosSucursal.map((usuario) => <option key={usuario.ID_Usuario} value={usuario.ID_Usuario}>{usuario.Nombre_Usuario} {usuario.Apellido_Usuario}</option>)}</select></label>
-                        <button className="finanzas-submit" type="submit" disabled={guardando || cargando || !sucursalSeleccionada || !usuariosSucursal.length}>{guardando ? 'Guardando…' : `Registrar ${tipo === 'INGRESO' ? 'ingreso' : 'egreso'}`}<span>→</span></button>
+                        <label className="finanzas-field">Responsable<select required value={usuarioSeleccionado} onChange={(event) => setUsuarioSeleccionado(event.target.value)}><option value="">Selecciona usuario</option>{usuariosResponsables.map((usuario) => <option key={usuario.ID_Usuario} value={usuario.ID_Usuario}>{usuario.Nombre_Usuario} {usuario.Apellido_Usuario}</option>)}</select></label>
+                        <button className="finanzas-submit" type="submit" disabled={guardando || cargando || !sucursalSeleccionada || !usuariosResponsables.length}>{guardando ? 'Guardando…' : `Registrar ${tipo === 'INGRESO' ? 'ingreso' : 'egreso'}`}<span>→</span></button>
                     </form>
                 </article>
 

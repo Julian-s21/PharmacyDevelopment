@@ -14,6 +14,7 @@ function Activos() {
     const [activos, setActivos] = useState([]);
     const [sucursales, setSucursales] = useState([]);
     const [busqueda, setBusqueda] = useState('');
+    const [filtroSucursal, setFiltroSucursal] = useState('');
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState('');
     const [formularioAbierto, setFormularioAbierto] = useState(false);
@@ -46,12 +47,17 @@ function Activos() {
 
     useEffect(() => { cargarDatos(); }, [cargarDatos]);
 
+    const activosDeSucursal = useMemo(() => activos.filter((activo) => (
+        !filtroSucursal
+        || Number(activo.ID_Sucursal ?? activo.sucursal?.ID_Sucursal) === Number(filtroSucursal)
+    )), [activos, filtroSucursal]);
+
     const activosFiltrados = useMemo(() => {
         const termino = busqueda.trim().toLocaleLowerCase();
-        if (!termino) return activos;
-        return activos.filter((activo) => [activo.Nombre_Activo, activo.Descripcion_Activo, activo.sucursal?.Nombre_Sucursal]
+        if (!termino) return activosDeSucursal;
+        return activosDeSucursal.filter((activo) => [activo.Nombre_Activo, activo.Descripcion_Activo, activo.sucursal?.Nombre_Sucursal]
             .some((valor) => String(valor || '').toLocaleLowerCase().includes(termino)));
-    }, [activos, busqueda]);
+    }, [activosDeSucursal, busqueda]);
 
     const abrirNuevo = () => {
         setEditando(null);
@@ -92,6 +98,7 @@ function Activos() {
             });
             const datos = await respuesta.json();
             if (!respuesta.ok) throw new Error(datos?.mensaje || datos?.errores?.join(' ') || 'No fue posible guardar el activo.');
+            setFiltroSucursal(String(payload.ID_Sucursal));
             setFormularioAbierto(false);
             await cargarDatos();
         } catch (e) {
@@ -114,15 +121,15 @@ function Activos() {
             {error && !formularioAbierto && <div className="activos-alert" role="alert">{error}<button type="button" onClick={cargarDatos}>Reintentar</button></div>}
 
             <section className="activos-summary">
-                <article className="activos-stat"><span>Activos registrados</span><strong>{activos.length}</strong><small>En todas las sucursales</small></article>
-                <article className="activos-stat"><span>Valor de adquisición</span><strong>{formatoMoneda(activos.reduce((suma, activo) => suma + Number(activo.Precio_Adquisicion_Activo || 0), 0))}</strong><small>Valor total registrado</small></article>
+                <article className="activos-stat"><span>Activos registrados</span><strong>{activosDeSucursal.length}</strong><small>{sucursales.find((sucursal) => Number(sucursal.ID_Sucursal) === Number(filtroSucursal))?.Nombre_Sucursal || 'En todas las sucursales'}</small></article>
+                <article className="activos-stat"><span>Valor de adquisición</span><strong>{formatoMoneda(activosDeSucursal.reduce((suma, activo) => suma + Number(activo.Precio_Adquisicion_Activo || 0), 0))}</strong><small>{filtroSucursal ? 'Valor de la sucursal seleccionada' : 'Valor total registrado'}</small></article>
             </section>
 
             <section className="activos-panel">
                 <div className="activos-panel-head"><div><span className="activos-overline">CONSULTA</span><h2>Registro de activos</h2><p>Información y valor de adquisición por sucursal.</p></div>
-                    <div className="activos-toolbar"><label className="activos-search"><SearchRounded /><input type="search" aria-label="Buscar activos" placeholder="Buscar activo o sucursal…" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} /></label><span className="activos-count">{activosFiltrados.length} activos</span><button className="activos-primary" type="button" onClick={abrirNuevo}><AddRounded /> Registrar activo</button></div>
+                    <div className="activos-toolbar"><label className="activos-search"><SearchRounded /><input type="search" aria-label="Buscar activos" placeholder="Buscar activo o sucursal…" value={busqueda} onChange={(e) => setBusqueda(e.target.value)} /></label><select className="activos-branch-filter" aria-label="Filtrar activos por sucursal" value={filtroSucursal} onChange={(e) => setFiltroSucursal(e.target.value)}><option value="">Todas las sucursales</option>{sucursales.map((sucursal) => <option key={sucursal.ID_Sucursal} value={sucursal.ID_Sucursal}>{sucursal.Nombre_Sucursal || `Sucursal ${sucursal.ID_Sucursal}`}</option>)}</select><span className="activos-count">{activosFiltrados.length} activos</span><button className="activos-primary" type="button" onClick={abrirNuevo}><AddRounded /> Registrar activo</button></div>
                 </div>
-                {cargando ? <div className="activos-empty">Cargando activos…</div> : activosFiltrados.length === 0 ? <div className="activos-empty"><BusinessRounded /><strong>{busqueda ? 'No hay activos que coincidan con la búsqueda.' : 'Aún no hay activos registrados.'}</strong><span>{busqueda ? 'Prueba con otro nombre o sucursal.' : 'Registra el primer activo de la organización.'}</span></div> : (
+                {cargando ? <div className="activos-empty">Cargando activos…</div> : activosFiltrados.length === 0 ? <div className="activos-empty"><BusinessRounded /><strong>{busqueda ? 'No hay activos que coincidan con la búsqueda.' : filtroSucursal ? 'No hay activos registrados en esta sucursal.' : 'Aún no hay activos registrados.'}</strong><span>{busqueda ? 'Prueba con otro nombre o sucursal.' : filtroSucursal ? 'Puedes registrar un activo y asignarlo a esta sucursal.' : 'Registra el primer activo de la organización.'}</span></div> : (
                     <div className="activos-table-wrap"><table className="activos-table"><thead><tr><th>Activo</th><th>Sucursal</th><th>Valor adquisición</th><th>Vida útil</th><th>Acciones</th></tr></thead><tbody>
                         {activosFiltrados.map((activo) => <tr key={activo.ID_Activo}><td><div className="activos-name"><span>{(activo.Nombre_Activo || 'A').charAt(0).toUpperCase()}</span><div><strong>{activo.Nombre_Activo}</strong><small>ID: {activo.ID_Activo} · {activo.Descripcion_Activo || 'Sin descripción'}</small></div></div></td><td>{activo.sucursal?.Nombre_Sucursal || `Sucursal ${activo.ID_Sucursal}`}</td><td className="activos-value">{formatoMoneda(activo.Precio_Adquisicion_Activo)}</td><td>{activo.Vida_Util_Activo ? `${activo.Vida_Util_Activo} años` : '—'}</td><td><button type="button" className="activos-edit" onClick={() => setActivoSeleccionado(activo)}><VisibilityRounded /> Ver activo</button></td></tr>)}
                     </tbody></table></div>
