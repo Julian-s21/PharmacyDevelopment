@@ -9,7 +9,7 @@ const validarUsuario = (req, res, next) => {
 
     const errores = [];
 
-    // Validar sucursal
+
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -20,21 +20,21 @@ const validarUsuario = (req, res, next) => {
         errores.push('El ID de la sucursal debe ser un número entero.');
     }
 
-    // Validar nombre
+
     if (!Nombre_Usuario || Nombre_Usuario.trim() === '') {
         errores.push('El nombre del usuario es obligatorio.');
     } else if (Nombre_Usuario.length > 100) {
         errores.push('El nombre del usuario no puede superar los 100 caracteres.');
     }
 
-    // Validar apellido
+
     if (!Apellido_Usuario || Apellido_Usuario.trim() === '') {
         errores.push('El apellido del usuario es obligatorio.');
     } else if (Apellido_Usuario.length > 100) {
         errores.push('El apellido del usuario no puede superar los 100 caracteres.');
     }
 
-    // Validar correo
+
     if (!Correo_Usuario || Correo_Usuario.trim() === '') {
         errores.push('El correo del usuario es obligatorio.');
     } else if (Correo_Usuario.length > 150) {
@@ -43,7 +43,7 @@ const validarUsuario = (req, res, next) => {
         errores.push('El correo del usuario no tiene un formato válido.');
     }
 
-    // Validar contraseña
+
     if (!Contrasena_Usuario || Contrasena_Usuario.trim() === '') {
         errores.push('La contraseña del usuario es obligatoria.');
     } else if (Contrasena_Usuario.length > 255) {

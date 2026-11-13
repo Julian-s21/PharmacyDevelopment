@@ -7,7 +7,7 @@ const validarInventario = (req, res, next) => {
 
     const errores = [];
 
-    // Validar sucursal
+
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -22,7 +22,7 @@ const validarInventario = (req, res, next) => {
         );
     }
 
-    // Validar medicamento
+
     if (
         ID_Medicamento === undefined ||
         ID_Medicamento === null ||
@@ -37,7 +37,7 @@ const validarInventario = (req, res, next) => {
         );
     }
 
-    // Validar cantidad
+
     if (
         Cantidad_Inventario === undefined ||
         Cantidad_Inventario === null ||

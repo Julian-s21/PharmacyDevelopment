@@ -22,7 +22,7 @@ async function verifyPassword(password, stored) {
         const actual = await scrypt(password, Buffer.from(saltHex, 'hex'), expected.length);
         return expected.length === actual.length && crypto.timingSafeEqual(expected, actual);
     }
-    // Migra las contraseñas heredadas en texto plano en el primer acceso válido.
+
     const incoming = Buffer.from(password);
     const legacy = Buffer.from(stored);
     return incoming.length === legacy.length && crypto.timingSafeEqual(incoming, legacy);

@@ -8,7 +8,7 @@ const validarMedicamento = (req, res, next) => {
 
     const errores = [];
 
-    // Validar categoría
+
     if (
         ID_Categoria === undefined ||
         ID_Categoria === null ||
@@ -21,7 +21,7 @@ const validarMedicamento = (req, res, next) => {
         );
     }
 
-    // Validar nombre
+
     if (
         !Nombre_Medicamento ||
         Nombre_Medicamento.trim() === ''
@@ -35,7 +35,7 @@ const validarMedicamento = (req, res, next) => {
         );
     }
 
-    // Validar descripción
+
     if (
         Descripcion_Medicamento !== undefined &&
         Descripcion_Medicamento !== null &&
@@ -46,7 +46,7 @@ const validarMedicamento = (req, res, next) => {
         );
     }
 
-    // Validar precio
+
     if (
         Precio_Medicamento === undefined ||
         Precio_Medicamento === null ||

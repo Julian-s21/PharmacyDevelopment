@@ -10,7 +10,7 @@ const validarActivoFijo = (req, res, next) => {
 
     const errores = [];
 
-    // ID Sucursal
+
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -21,7 +21,7 @@ const validarActivoFijo = (req, res, next) => {
         );
     }
 
-    // Nombre
+
     if (
         !Nombre_Activo ||
         Nombre_Activo.trim() === ''
@@ -35,7 +35,7 @@ const validarActivoFijo = (req, res, next) => {
         );
     }
 
-    // Descripción
+
     if (
         Descripcion_Activo !== undefined &&
         Descripcion_Activo !== null &&
@@ -48,7 +48,7 @@ const validarActivoFijo = (req, res, next) => {
         }
     }
 
-    // Precio de adquisición
+
     if (
         Precio_Adquisicion_Activo === undefined ||
         Precio_Adquisicion_Activo === null ||
@@ -71,7 +71,7 @@ const validarActivoFijo = (req, res, next) => {
         );
     }
 
-    // Vida útil
+
     if (
         Vida_Util_Activo !== undefined &&
         Vida_Util_Activo !== null &&

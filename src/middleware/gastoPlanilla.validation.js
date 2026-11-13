@@ -11,7 +11,7 @@ const validarGastoPlanilla = (req, res, next) => {
 
     const errores = [];
 
-    // ID Sucursal
+
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -22,7 +22,7 @@ const validarGastoPlanilla = (req, res, next) => {
         );
     }
 
-    // ID Usuario
+
     if (
         ID_Usuario === undefined ||
         ID_Usuario === null ||
@@ -33,7 +33,7 @@ const validarGastoPlanilla = (req, res, next) => {
         );
     }
 
-    // Salario
+
     if (
         Salario_Planilla === undefined ||
         Salario_Planilla === null ||
@@ -52,7 +52,7 @@ const validarGastoPlanilla = (req, res, next) => {
         );
     }
 
-    // Deducciones
+
     if (
         Deducciones_Planilla !== undefined &&
         Deducciones_Planilla !== null &&
@@ -69,7 +69,7 @@ const validarGastoPlanilla = (req, res, next) => {
         }
     }
 
-    // Total
+
     if (
         Total_Planilla === undefined ||
         Total_Planilla === null ||
@@ -88,7 +88,7 @@ const validarGastoPlanilla = (req, res, next) => {
         );
     }
 
-    // Fecha
+
     if (!Fecha_Planilla) {
 
         errores.push(

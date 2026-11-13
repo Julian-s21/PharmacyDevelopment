@@ -1,52 +1,4 @@
-/*const usuarioRepository = require('../repositories/usuario.repository');
 
-const obtenerTodos = async () => {
-    return await usuarioRepository.find();
-};
-
-const obtenerPorId = async (id) => {
-    return await usuarioRepository.findOneBy({
-        ID_Usuario: id
-    });
-};
-
-const crear = async (datos) => {
-    const usuario = usuarioRepository.create(datos);
-
-    return await usuarioRepository.save(usuario);
-};
-
-const actualizar = async (id, datos) => {
-    const usuario = await obtenerPorId(id);
-
-    if (!usuario) {
-        return null;
-    }
-
-    Object.assign(usuario, datos);
-
-    return await usuarioRepository.save(usuario);
-};
-
-const eliminar = async (id) => {
-    const usuario = await obtenerPorId(id);
-
-    if (!usuario) {
-        return null;
-    }
-
-    await usuarioRepository.remove(usuario);
-
-    return usuario;
-};
-
-module.exports = {
-    obtenerTodos,
-    obtenerPorId,
-    crear,
-    actualizar,
-    eliminar
-};*/
 const usuarioRepository = require('../repositories/usuario.repository');
 const sucursalRepository = require('../repositories/sucursal.repository');
 const { hashPassword } = require('./password.service');
@@ -72,7 +24,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-    // Verificar que la sucursal exista
+
     const sucursal = await sucursalRepository.findOneBy({
         ID_Sucursal: datos.ID_Sucursal
     });
@@ -81,7 +33,7 @@ async function crear(datos) {
         throw new Error('La sucursal indicada no existe.');
     }
 
-    // Verificar que el correo no esté registrado
+
     const usuarioExistente = await usuarioRepository.findOneBy({
         Correo_Usuario: datos.Correo_Usuario
     });
@@ -111,7 +63,7 @@ async function actualizar(id, datos) {
         return null;
     }
 
-    // Si se está cambiando la sucursal, verificar que exista
+
     if (datos.ID_Sucursal !== undefined) {
 
         const sucursal = await sucursalRepository.findOneBy({
@@ -123,7 +75,7 @@ async function actualizar(id, datos) {
         }
     }
 
-    // Si se está cambiando el correo, verificar que no esté ocupado
+
     if (datos.Correo_Usuario !== undefined) {
 
         const usuarioExistente = await usuarioRepository.findOneBy({
@@ -138,7 +90,7 @@ async function actualizar(id, datos) {
         }
     }
 
-    // Actualizar únicamente los campos recibidos
+
     if (datos.ID_Sucursal !== undefined) {
         usuario.ID_Sucursal = datos.ID_Sucursal;
     }
@@ -172,7 +124,7 @@ async function eliminar(id) {
         return null;
     }
 
-    // Verificar si el usuario tiene registros relacionados
+
     const tieneMovimientosInventario =
         await usuarioRepository.manager
             .getRepository('MovimientoInventario')

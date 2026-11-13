@@ -11,7 +11,7 @@ const validarFlujoEfectivo = (req, res, next) => {
 
     const errores = [];
 
-    // ID Sucursal
+
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -22,7 +22,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Fecha inicio
+
     if (!Fecha_Inicio_Flujo) {
 
         errores.push(
@@ -36,7 +36,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Fecha fin
+
     if (!Fecha_Fin_Flujo) {
 
         errores.push(
@@ -50,7 +50,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Saldo
+
     if (
         Saldo_Flujo === undefined ||
         Saldo_Flujo === null ||
@@ -65,7 +65,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Total ingresos
+
     if (
         Total_Ingresos_Flujo === undefined ||
         Total_Ingresos_Flujo === null ||
@@ -84,7 +84,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Total egresos
+
     if (
         Total_Egresos_Flujo === undefined ||
         Total_Egresos_Flujo === null ||
@@ -103,7 +103,7 @@ const validarFlujoEfectivo = (req, res, next) => {
         );
     }
 
-    // Validar período
+
     if (
         Fecha_Inicio_Flujo &&
         Fecha_Fin_Flujo &&

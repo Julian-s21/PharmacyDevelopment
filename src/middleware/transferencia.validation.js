@@ -8,7 +8,7 @@ const validarTransferencia = (req, res, next) => {
 
     const errores = [];
 
-    // Validar sucursal origen
+
     if (
         ID_Sucursal_Origen === undefined ||
         ID_Sucursal_Origen === null ||
@@ -25,7 +25,7 @@ const validarTransferencia = (req, res, next) => {
         );
     }
 
-    // Validar sucursal destino
+
     if (
         ID_Sucursal_Destino === undefined ||
         ID_Sucursal_Destino === null ||
@@ -42,7 +42,7 @@ const validarTransferencia = (req, res, next) => {
         );
     }
 
-    // Validar que origen y destino sean diferentes
+
     if (
         ID_Sucursal_Origen !== undefined &&
         ID_Sucursal_Destino !== undefined &&
@@ -53,7 +53,7 @@ const validarTransferencia = (req, res, next) => {
         );
     }
 
-    // Validar usuario
+
     if (
         ID_Usuario === undefined ||
         ID_Usuario === null ||
@@ -70,7 +70,7 @@ const validarTransferencia = (req, res, next) => {
         );
     }
 
-    // Validar fecha
+
     if (
         !Fecha_Transferencia ||
         Fecha_Transferencia.trim() === ''

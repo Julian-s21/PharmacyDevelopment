@@ -30,9 +30,9 @@ import './Sucursales.css';
 
 function Sucursales() {
 
-    // ==========================================
-    // ESTADOS
-    // ==========================================
+
+
+
 
     const [sucursales, setSucursales] = useState([]);
 
@@ -42,23 +42,23 @@ function Sucursales() {
 
     const [error, setError] = useState('');
 
-    // Sucursal seleccionada para consultar
+
     const [sucursalSeleccionada, setSucursalSeleccionada] =
         useState(null);
 
-    // Estado del modal
+
     const [detalleAbierto, setDetalleAbierto] =
         useState(false);
 
-    // Estado de carga del detalle
+
     const [cargandoDetalle, setCargandoDetalle] =
         useState(false);
 
 
-    // ==========================================
-    // CONSULTAR SUCURSALES
-    // RF-01
-    // ==========================================
+
+
+
+
 
     useEffect(() => {
 
@@ -109,10 +109,10 @@ function Sucursales() {
     };
 
 
-    // ==========================================
-    // CONSULTAR INFORMACIÓN DE SUCURSAL
-    // RF-02
-    // ==========================================
+
+
+
+
 
     const verInformacionSucursal = async (sucursal) => {
 
@@ -122,12 +122,7 @@ function Sucursales() {
 
             setDetalleAbierto(true);
 
-            /*
-             * Consultamos la sucursal específica
-             * mediante su ID.
-             *
-             * Vite redirige /api hacia Node.js.
-             */
+
             const respuesta = await fetch(
                 `/api/sucursales/${sucursal.ID_Sucursal}`
             );
@@ -151,11 +146,7 @@ function Sucursales() {
                 error
             );
 
-            /*
-             * Si por alguna razón el detalle no puede
-             * obtenerse, conservamos la información
-             * que ya tenemos en la tabla.
-             */
+
             setSucursalSeleccionada(sucursal);
 
         } finally {
@@ -167,9 +158,9 @@ function Sucursales() {
     };
 
 
-    // ==========================================
-    // CERRAR DETALLE
-    // ==========================================
+
+
+
 
     const cerrarDetalle = () => {
 
@@ -180,9 +171,9 @@ function Sucursales() {
     };
 
 
-    // ==========================================
-    // FILTRO DE BÚSQUEDA
-    // ==========================================
+
+
+
 
     const sucursalesFiltradas = sucursales.filter((sucursal) => {
 
@@ -242,24 +233,16 @@ function Sucursales() {
     };
 
 
-    // ==========================================
-    // RENDER
-    // ==========================================
+
+
+
 
     return (
 
         <Box className="sucursales-page">
 
 
-            {/* ==========================================
-                ENCABEZADO
-            ========================================== */}
-
-            <Box className="sucursales-header">
-
-                <Box className="sucursales-header-left">
-
-                    <Box className="sucursales-header-icon">
+            Box className="sucursales-header-icon">
 
                         <BusinessRounded />
 
@@ -283,23 +266,7 @@ function Sucursales() {
             </Box>
 
 
-            {/* ==========================================
-                CONTENIDO PRINCIPAL
-            ========================================== */}
-
-            <Paper className="sucursales-panel">
-
-
-                {/* ==========================================
-                    BARRA DE HERRAMIENTAS
-                ========================================== */}
-
-                <Box className="sucursales-toolbar">
-
-                    <TextField
-                        className="sucursales-search"
-                        placeholder="Buscar sucursal..."
-                        variant="outlined"
+               variant="outlined"
                         size="small"
                         value={busqueda}
                         onChange={(e) =>
@@ -325,16 +292,7 @@ function Sucursales() {
                 </Box>
 
 
-                {/* ==========================================
-                    MENSAJE DE ERROR
-                ========================================== */}
-
-                {error && (
-
-                    <Box className="sucursales-error">
-
-                        <Typography>
-                            {error}
+                        {error}
                         </Typography>
 
                     </Box>
@@ -342,16 +300,6 @@ function Sucursales() {
                 )}
 
 
-                {/* ==========================================
-                    TABLA
-                ========================================== */}
-
-                <Box className="sucursales-table-container">
-
-
-                    {/* ENCABEZADO */}
-
-                    <Box className="sucursales-table-header">
 
                         <Box className="table-column column-name">
                             Sucursal
@@ -372,16 +320,7 @@ function Sucursales() {
                     </Box>
 
 
-                    {/* ==========================================
-                        CARGANDO
-                    ========================================== */}
-
-                    {cargando ? (
-
-                        <Box className="sucursales-loading">
-
-                            <Typography>
-                                Cargando sucursales...
+                                                Cargando sucursales...
                             </Typography>
 
                         </Box>
@@ -392,21 +331,12 @@ function Sucursales() {
                         <Box className="sucursales-table-body">
 
 
-                            {/* ==========================================
-                                REGISTROS
-                            ========================================== */}
-
-                            {sucursalesFiltradas.map((sucursal) => (
-
-                                <Box
-                                    className="sucursal-row"
+                            sal-row"
                                     key={sucursal.ID_Sucursal}
                                 >
 
 
-                                    {/* NOMBRE */}
-
-                                    <Box className="table-column column-name">
+                                                              <Box className="table-column column-name">
 
                                         <Box className="sucursal-name-wrapper">
 
@@ -441,9 +371,7 @@ function Sucursales() {
                                     </Box>
 
 
-                                    {/* UBICACIÓN */}
-
-                                    <Box className="table-column column-location">
+                                                           <Box className="table-column column-location">
 
                                         <Box className="location-wrapper">
 
@@ -462,9 +390,7 @@ function Sucursales() {
                                     </Box>
 
 
-                                    {/* ESTADO */}
-
-                                    <Box className="table-column column-status">
+                                                              <Box className="table-column column-status">
 
                                         <Box className="status-badge status-active">
 
@@ -477,9 +403,7 @@ function Sucursales() {
                                     </Box>
 
 
-                                    {/* CONSULTA */}
-
-                                    <Box className="table-column column-actions">
+                                                            <Box className="table-column column-actions">
 
                                         <IconButton
                                             className="action-button"
@@ -502,14 +426,7 @@ function Sucursales() {
                             ))}
 
 
-                            {/* ==========================================
-                                SIN RESULTADOS
-                            ========================================== */}
-
-                            {!cargando &&
-                                sucursalesFiltradas.length === 0 && (
-
-                                    <Box className="sucursales-empty">
+                            "sucursales-empty">
 
                                         <BusinessRounded />
 
@@ -530,17 +447,7 @@ function Sucursales() {
             </Paper>
 
 
-            {/* ==========================================
-                DETALLE DE SUCURSAL
-                RF-02
-            ========================================== */}
-
-            <Dialog
-                open={detalleAbierto}
-                onClose={cerrarDetalle}
-                fullWidth
-                maxWidth="md"
-            >
+                   >
 
                 <DialogTitle>
 
@@ -626,15 +533,7 @@ function Sucursales() {
                         <Box>
 
 
-                            {/* ==========================================
-                                INFORMACIÓN GENERAL
-                            ========================================== */}
-
-                            <Box sx={{ mb: 4 }}>
-
-                                <Typography
-                                    variant="subtitle1"
-                                    fontWeight="600"
+                                             fontWeight="600"
                                     sx={{ mb: 2 }}
                                 >
                                     Información general
@@ -746,16 +645,7 @@ function Sucursales() {
                             </Box>
 
 
-                            {/* ==========================================
-                                INFORMACIÓN RELACIONADA
-                                RF-02
-                            ========================================== */}
-
-                            <Typography
-                                variant="subtitle1"
-                                fontWeight="600"
-                                sx={{ mb: 2 }}
-                            >
+                                 >
                                 Información relacionada
                             </Typography>
 
@@ -770,9 +660,7 @@ function Sucursales() {
                             >
 
 
-                                {/* EMPLEADOS */}
-
-                                <Box className="sucursal-info-card">
+                                                   <Box className="sucursal-info-card">
 
                                     <PeopleRounded />
 
@@ -819,9 +707,7 @@ function Sucursales() {
                                 </Box>
 
 
-                                {/* MEDICAMENTOS */}
-
-                                <Box className="sucursal-info-card">
+                                                <Box className="sucursal-info-card">
 
                                     <MedicationRounded />
 
@@ -872,9 +758,7 @@ function Sucursales() {
                                 </Box>
 
 
-                                {/* INVENTARIO */}
-
-                                <Box className="sucursal-info-card">
+                                                  <Box className="sucursal-info-card">
 
                                     <Inventory2Rounded />
 
@@ -920,9 +804,7 @@ function Sucursales() {
                                 </Box>
 
 
-                                {/* ACTIVOS */}
-
-                                <Box className="sucursal-info-card">
+                                                     <Box className="sucursal-info-card">
 
                                     <AccountBalanceRounded />
 
@@ -972,9 +854,7 @@ function Sucursales() {
                                 </Box>
 
 
-                                {/* GASTOS DE PLANILLA */}
-
-                                <Box className="sucursal-info-card">
+                                          <Box className="sucursal-info-card">
 
                                     <PaymentsRounded />
 
@@ -1027,9 +907,7 @@ function Sucursales() {
                                 </Box>
 
 
-                                {/* OPERACIONES */}
-
-                                <Box className="sucursal-info-card">
+                                                 <Box className="sucursal-info-card">
 
                                     <SwapHorizRounded />
 

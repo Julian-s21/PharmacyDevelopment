@@ -32,9 +32,7 @@ import './Sidebar.css';
 const drawerWidth = 220;
 
 
-/* ==========================================
-   MENÚ
-========================================== */
+
 
 const menuPrincipal = [
     {
@@ -88,9 +86,7 @@ const menuFinanzas = [
 ];
 
 
-/* ==========================================
-   SIDEBAR
-========================================== */
+
 
 function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
     const location = useLocation();
@@ -108,9 +104,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
     };
 
 
-    /* ======================================
-       CREAR MENÚ
-    ====================================== */
+
 
     const crearMenu = (items, activo = false) => (
     <List className="sidebar-list">
@@ -167,23 +161,14 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
 );
 
 
-    /* ======================================
-       CONTENIDO
-    ====================================== */
+
 
     const contenido = (
 
         <Box className="sidebar-container">
 
 
-            {/* =================================
-                LOGO
-            ================================= */}
-
-            <Box className="sidebar-brand">
-
-                <Box className="brand-icon">
-                    P
+                     P
                 </Box>
 
                 <Box className="brand-information">
@@ -204,13 +189,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
             <Divider className="sidebar-divider" />
 
 
-            {/* =================================
-                PRINCIPAL
-            ================================= */}
-
-            <Box className="sidebar-section">
-
-                <Typography className="sidebar-section-title">
+            ">
                     PRINCIPAL
                 </Typography>
 
@@ -219,13 +198,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
             </Box>
 
 
-            {/* =================================
-                OPERACIONES
-            ================================= */}
 
-            <Box className="sidebar-section">
-
-                <Typography className="sidebar-section-title">
                     OPERACIONES
                 </Typography>
 
@@ -234,13 +207,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
             </Box>
 
 
-            {/* =================================
-                FINANZAS
-            ================================= */}
-
-            <Box className="sidebar-section">
-
-                <Typography className="sidebar-section-title">
+            e">
                     FINANZAS
                 </Typography>
 
@@ -249,15 +216,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
             </Box>
 
 
-            {/* =================================
-                PERFIL / PARTE INFERIOR
-            ================================= */}
-
-            <Box className="sidebar-bottom">
-
-                <Box className="sidebar-user">
-
-                    <Box className="sidebar-user-avatar">
+            className="sidebar-user-avatar">
                         {inicialUsuario}
                     </Box>
 
@@ -286,16 +245,12 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
     );
 
 
-    /* ==========================================
-       DRAWERS
-    ========================================== */
+
 
     return (
         <>
 
-            {/* DESKTOP */}
-
-            <Drawer
+               <Drawer
                 variant="permanent"
                 className="sidebar-desktop"
                 sx={{
@@ -314,9 +269,7 @@ function Sidebar({ mobileOpen, onClose, usuario, onLogout }) {
             </Drawer>
 
 
-            {/* MOBILE */}
-
-            <Drawer
+                <Drawer
                 variant="temporary"
                 open={mobileOpen}
                 onClose={onClose}

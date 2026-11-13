@@ -1,54 +1,4 @@
-/*const inventarioRepository =
-    require('../repositories/inventario.repository');
 
-const obtenerTodos = async () => {
-    return await inventarioRepository.find();
-};
-
-const obtenerPorId = async (id) => {
-    return await inventarioRepository.findOneBy({
-        ID_Inventario: id
-    });
-};
-
-const crear = async (datos) => {
-    const inventario =
-        inventarioRepository.create(datos);
-
-    return await inventarioRepository.save(inventario);
-};
-
-const actualizar = async (id, datos) => {
-    const inventario = await obtenerPorId(id);
-
-    if (!inventario) {
-        return null;
-    }
-
-    Object.assign(inventario, datos);
-
-    return await inventarioRepository.save(inventario);
-};
-
-const eliminar = async (id) => {
-    const inventario = await obtenerPorId(id);
-
-    if (!inventario) {
-        return null;
-    }
-
-    await inventarioRepository.remove(inventario);
-
-    return inventario;
-};
-
-module.exports = {
-    obtenerTodos,
-    obtenerPorId,
-    crear,
-    actualizar,
-    eliminar
-};*/
 const inventarioRepository = require('../repositories/inventario.repository');
 const sucursalRepository = require('../repositories/sucursal.repository');
 const medicamentoRepository = require('../repositories/medicamento.repository');
@@ -84,7 +34,7 @@ async function obtenerPorMedicamento(id) {
 
 async function crear(datos) {
 
-    // Verificar que la sucursal exista
+
     const sucursal = await sucursalRepository.findOneBy({
         ID_Sucursal: datos.ID_Sucursal
     });
@@ -93,7 +43,7 @@ async function crear(datos) {
         throw new Error('La sucursal indicada no existe.');
     }
 
-    // Verificar que el medicamento exista
+
     const medicamento = await medicamentoRepository.findOneBy({
         ID_Medicamento: datos.ID_Medicamento
     });
@@ -102,8 +52,8 @@ async function crear(datos) {
         throw new Error('El medicamento indicado no existe.');
     }
 
-    // Verificar que no exista ya el medicamento
-    // en el inventario de esa sucursal
+
+
     const inventarioExistente =
         await inventarioRepository.findOne({
             where: {
@@ -118,7 +68,7 @@ async function crear(datos) {
         );
     }
 
-    // Validar cantidad
+
     const cantidad = Number(datos.Cantidad_Inventario);
 
     if (!Number.isInteger(cantidad) || cantidad < 0) {
@@ -146,7 +96,7 @@ async function actualizar(id, datos) {
         return null;
     }
 
-    // Si se cambia la sucursal
+
     if (datos.ID_Sucursal !== undefined) {
 
         const sucursal = await sucursalRepository.findOneBy({
@@ -160,7 +110,7 @@ async function actualizar(id, datos) {
         inventario.ID_Sucursal = datos.ID_Sucursal;
     }
 
-    // Si se cambia el medicamento
+
     if (datos.ID_Medicamento !== undefined) {
 
         const medicamento = await medicamentoRepository.findOneBy({
@@ -174,7 +124,7 @@ async function actualizar(id, datos) {
         inventario.ID_Medicamento = datos.ID_Medicamento;
     }
 
-    // Verificar combinación duplicada
+
     const inventarioExistente =
         await inventarioRepository.findOne({
             where: {
@@ -192,7 +142,7 @@ async function actualizar(id, datos) {
         );
     }
 
-    // Actualizar cantidad
+
     if (datos.Cantidad_Inventario !== undefined) {
 
         const cantidad = Number(datos.Cantidad_Inventario);
@@ -219,7 +169,7 @@ async function eliminar(id) {
         return null;
     }
 
-    // Verificar movimientos relacionados
+
     const movimientos =
         await movimientoInventarioRepository.count({
             where: {

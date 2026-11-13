@@ -1,54 +1,4 @@
-/*const activoFijoRepository =
-    require('../repositories/activoFijo.repository');
 
-const obtenerTodos = async () => {
-    return await activoFijoRepository.find();
-};
-
-const obtenerPorId = async (id) => {
-    return await activoFijoRepository.findOneBy({
-        ID_Activo: id
-    });
-};
-
-const crear = async (datos) => {
-    const activo =
-        activoFijoRepository.create(datos);
-
-    return await activoFijoRepository.save(activo);
-};
-
-const actualizar = async (id, datos) => {
-    const activo = await obtenerPorId(id);
-
-    if (!activo) {
-        return null;
-    }
-
-    Object.assign(activo, datos);
-
-    return await activoFijoRepository.save(activo);
-};
-
-const eliminar = async (id) => {
-    const activo = await obtenerPorId(id);
-
-    if (!activo) {
-        return null;
-    }
-
-    await activoFijoRepository.remove(activo);
-
-    return activo;
-};
-
-module.exports = {
-    obtenerTodos,
-    obtenerPorId,
-    crear,
-    actualizar,
-    eliminar
-};*/
 
 const activoFijoRepository =
     require('../repositories/activoFijo.repository');
@@ -82,7 +32,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-    // Verificar sucursal
+
     const sucursal =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal
@@ -95,7 +45,7 @@ async function crear(datos) {
     }
 
 
-    // Validar nombre
+
     if (!datos.Nombre_Activo) {
         throw new Error(
             'El nombre del activo es obligatorio.'
@@ -113,7 +63,7 @@ async function crear(datos) {
     }
 
 
-    // Validar descripción
+
     let descripcion = null;
 
     if (
@@ -131,7 +81,7 @@ async function crear(datos) {
     }
 
 
-    // Validar precio de adquisición
+
     const precio =
         Number(datos.Precio_Adquisicion_Activo);
 
@@ -142,7 +92,7 @@ async function crear(datos) {
     }
 
 
-    // Validar vida útil
+
     let vidaUtil = null;
 
     if (
@@ -199,7 +149,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Verificar sucursal si se modifica
+
     if (datos.ID_Sucursal !== undefined) {
 
         const sucursal =
@@ -218,7 +168,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Actualizar nombre
+
     if (datos.Nombre_Activo !== undefined) {
 
         const nombre =
@@ -240,7 +190,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Actualizar descripción
+
     if (datos.Descripcion_Activo !== undefined) {
 
         if (
@@ -265,7 +215,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Actualizar precio
+
     if (datos.Precio_Adquisicion_Activo !== undefined) {
 
         const precio =
@@ -282,7 +232,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Actualizar vida útil
+
     if (datos.Vida_Util_Activo !== undefined) {
 
         if (datos.Vida_Util_Activo === null) {

@@ -7,7 +7,7 @@ AppDataSource.initialize()
         console.log('Conexión exitosa');
         console.log('=================================');
 
-        // Usuario actual
+
         const usuario = await AppDataSource.query(`
             SELECT USER AS USUARIO
             FROM DUAL
@@ -16,7 +16,7 @@ AppDataSource.initialize()
         console.log('Usuario actual:');
         console.log(usuario);
 
-        // Esquema actual
+
         const esquema = await AppDataSource.query(`
             SELECT SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA') AS ESQUEMA
             FROM DUAL
@@ -25,7 +25,7 @@ AppDataSource.initialize()
         console.log('Esquema actual:');
         console.log(esquema);
 
-        // Todas las tablas del usuario
+
         const tablas = await AppDataSource.query(`
             SELECT TABLE_NAME
             FROM USER_TABLES

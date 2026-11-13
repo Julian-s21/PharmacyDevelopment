@@ -1,54 +1,4 @@
-/*const medicamentoRepository =
-    require('../repositories/medicamento.repository');
 
-const obtenerTodos = async () => {
-    return await medicamentoRepository.find();
-};
-
-const obtenerPorId = async (id) => {
-    return await medicamentoRepository.findOneBy({
-        ID_Medicamento: id
-    });
-};
-
-const crear = async (datos) => {
-    const medicamento =
-        medicamentoRepository.create(datos);
-
-    return await medicamentoRepository.save(medicamento);
-};
-
-const actualizar = async (id, datos) => {
-    const medicamento = await obtenerPorId(id);
-
-    if (!medicamento) {
-        return null;
-    }
-
-    Object.assign(medicamento, datos);
-
-    return await medicamentoRepository.save(medicamento);
-};
-
-const eliminar = async (id) => {
-    const medicamento = await obtenerPorId(id);
-
-    if (!medicamento) {
-        return null;
-    }
-
-    await medicamentoRepository.remove(medicamento);
-
-    return medicamento;
-};
-
-module.exports = {
-    obtenerTodos,
-    obtenerPorId,
-    crear,
-    actualizar,
-    eliminar
-};*/
 
 const medicamentoRepository = require('../repositories/medicamento.repository');
 const categoriaRepository = require('../repositories/categoriaMedicamento.repository');
@@ -97,7 +47,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-    // Verificar que la categoría exista
+
     const categoria = await categoriaRepository.findOneBy({
         ID_Categoria: datos.ID_Categoria
     });
@@ -107,7 +57,7 @@ async function crear(datos) {
     }
 
 
-    // Verificar que no exista otro medicamento con el mismo nombre
+
     const medicamentoExistente = await medicamentoRepository.findOneBy({
         Nombre_Medicamento: datos.Nombre_Medicamento
     });
@@ -117,7 +67,7 @@ async function crear(datos) {
     }
 
 
-    // Validar el precio
+
     if (
         datos.Precio_Medicamento === undefined ||
         Number(datos.Precio_Medicamento) < 0
@@ -152,7 +102,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Si se cambia la categoría, verificar que exista
+
     if (datos.ID_Categoria !== undefined) {
 
         const categoria = await categoriaRepository.findOneBy({
@@ -167,7 +117,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Si se cambia el nombre, verificar duplicados
+
     if (datos.Nombre_Medicamento !== undefined) {
 
         const medicamentoExistente =
@@ -189,7 +139,7 @@ async function actualizar(id, datos) {
     }
 
 
-    // Validar precio si se está actualizando
+
     if (datos.Precio_Medicamento !== undefined) {
 
         if (Number(datos.Precio_Medicamento) < 0) {
@@ -227,7 +177,7 @@ async function eliminar(id) {
     }
 
 
-    // Verificar inventario relacionado
+
     const inventarios = await inventarioRepository.count({
         where: {
             ID_Medicamento: id
@@ -235,7 +185,7 @@ async function eliminar(id) {
     });
 
 
-    // Verificar detalles de transferencias relacionados
+
     const detallesTransferencia =
         await detalleTransferenciaRepository.count({
             where: {
@@ -244,7 +194,7 @@ async function eliminar(id) {
         });
 
 
-    // Verificar detalles de distribuciones relacionados
+
     const detallesDistribucion =
         await detalleDistribucionRepository.count({
             where: {

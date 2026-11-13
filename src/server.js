@@ -7,34 +7,34 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Middleware para recibir JSON
+
 app.use(express.json());
 
 const authRoutes = require('./routes/auth.routes');
 const { authenticate } = require('./middleware/auth.middleware');
 app.use('/api/auth', authRoutes);
-// Toda la API de negocio requiere una sesión válida.
+
 app.use('/api', authenticate);
 
-// Rutas para sucursal
+
 const sucursalRoutes = require('./routes/sucursal.routes');
 app.use('/api/sucursales', sucursalRoutes);
 
 
-//rutas para usuario
+
 const usuarioRoutes = require('./routes/usuario.routes');
 app.use('/api/usuarios', usuarioRoutes);
 
 const categoriaMedicamentoRoutes =
     require('./routes/categoriaMedicamento.routes');
 
-//rutas para categoria Medicamento
+
 app.use(
     '/api/categorias-medicamento',
     categoriaMedicamentoRoutes
 );
 
-//rutas para medicamento
+
 const medicamentoRoutes = require('./routes/medicamento.routes');
 
 app.use(
@@ -47,7 +47,7 @@ app.get('/health', (req, res) => {
     });
 });
 
-//ruta para  inventario
+
 const inventarioRoutes =
     require('./routes/inventario.routes');
 
@@ -58,7 +58,7 @@ app.use(
 app.use('/api/inventarios', inventarioRoutes);
 
 
-//ruta para movimiento inventario
+
 const movimientoInventarioRoutes =
     require('./routes/movimientoInventario.routes');
 
@@ -68,7 +68,7 @@ app.use(
 );
 app.use('/api/inventario/movimiento', movimientoInventarioRoutes);
 
-//rutas para transferencia
+
 const transferenciaRoutes =
     require('./routes/transferencia.routes');
 
@@ -77,7 +77,7 @@ app.use(
     transferenciaRoutes
 );
 
-//ruta para detalle de transferencia
+
 const detalleTransferenciaRoutes =
     require('./routes/detalleTransferencia.routes');
 
@@ -86,7 +86,7 @@ app.use(
     detalleTransferenciaRoutes
 );
 
-//rutas para distribucion
+
 const distribucionRoutes =
     require('./routes/distribucion.routes');
 
@@ -96,7 +96,7 @@ app.use(
 );
 
 
-//rutas para detalles de distribucion
+
 const detalleDistribucionRoutes =
     require('./routes/detalleDistribucion.routes');
 
@@ -105,7 +105,7 @@ app.use(
     detalleDistribucionRoutes
 );
 
-//rutas para movimiento financiero
+
 
 const movimientoFinancieroRoutes =
     require('./routes/movimientoFinanciero.routes');
@@ -115,7 +115,7 @@ app.use(
     movimientoFinancieroRoutes
 );
 
-//rutas para gastos de planilla 
+
 const gastoPlanillaRoutes =
     require('./routes/gastoPlanilla.routes');
 
@@ -124,7 +124,7 @@ app.use(
     gastoPlanillaRoutes
 );
 
-//rutas para activos fijos
+
 const activoFijoRoutes =
     require('./routes/activoFijo.routes');
 
@@ -133,7 +133,7 @@ app.use(
     activoFijoRoutes
 );
 
-//rutas para flujo de efectivo 
+
 const flujoEfectivoRoutes =
     require('./routes/flujoEfectivo.routes');
 
@@ -142,7 +142,7 @@ app.use(
     flujoEfectivoRoutes
 );
 
-// En producción, Express también entrega la aplicación React compilada.
+
 const frontendDist = path.join(__dirname, '..', 'pharmacyFrontend', 'dist');
 app.use(express.static(frontendDist));
 app.use((req, res, next) => {
@@ -152,7 +152,7 @@ app.use((req, res, next) => {
     });
 });
 
-// Inicializar conexión a Oracle
+
 AppDataSource.initialize()
     .then(() => {
         console.log('Conexión a Oracle establecida correctamente.');

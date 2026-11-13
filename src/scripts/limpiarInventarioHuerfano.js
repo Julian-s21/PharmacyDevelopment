@@ -6,7 +6,7 @@ async function limpiarInventarioHuerfano() {
 
         console.log('\n=== LIMPIEZA DE INVENTARIO HUÉRFANO ===\n');
 
-        // Buscar el inventario problemático
+
         const inventarios = await AppDataSource.query(`
             SELECT
                 i."ID_Inventario" AS "ID_INVENTARIO",
@@ -34,7 +34,7 @@ async function limpiarInventarioHuerfano() {
 
             const idInventario = inventario.ID_INVENTARIO;
 
-            // Verificar movimientos asociados
+
             const movimientos = await AppDataSource.query(`
                 SELECT "ID_Movimiento_Inventario"
                 FROM "MOVIMIENTO_INVENTARIO"
@@ -48,7 +48,7 @@ async function limpiarInventarioHuerfano() {
                 continue;
             }
 
-            // Eliminar únicamente el inventario huérfano
+
             await AppDataSource.query(`
                 DELETE FROM "INVENTARIO"
                 WHERE "ID_Inventario" = :1
