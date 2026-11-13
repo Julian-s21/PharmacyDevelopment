@@ -11,7 +11,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
 
     const errores = [];
 
-
+    // ID Sucursal
     if (
         ID_Sucursal === undefined ||
         ID_Sucursal === null ||
@@ -22,7 +22,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
         );
     }
 
-
+    // ID Usuario
     if (
         ID_Usuario === undefined ||
         ID_Usuario === null ||
@@ -33,7 +33,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
         );
     }
 
-
+    // Tipo de movimiento
     if (
         !Tipo_Movimiento_Financiero ||
         Tipo_Movimiento_Financiero.trim() === ''
@@ -47,7 +47,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
         );
     }
 
-
+    // Concepto
     if (
         !Concepto_Movimiento_Financiero ||
         Concepto_Movimiento_Financiero.trim() === ''
@@ -61,7 +61,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
         );
     }
 
-
+    // Monto
     if (
         Monto_Movimiento_Financiero === undefined ||
         Monto_Movimiento_Financiero === null ||
@@ -84,7 +84,7 @@ const validarMovimientoFinanciero = (req, res, next) => {
         );
     }
 
-
+    // Fecha
     if (!Fecha_Movimiento_Financiero) {
 
         errores.push(

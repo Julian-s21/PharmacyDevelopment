@@ -1,9 +1,18 @@
+/* =====================================================
+   SUCURSALES
+===================================================== */
+
 .sucursales-page {
     width: 100%;
     max-width: 1500px;
     margin: 0 auto;
     animation: sucursalesAppear 0.45s ease both;
 }
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
 
 .sucursales-header {
     width: 100%;
@@ -44,6 +53,9 @@
         0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
+
+/* Línea superior animada */
+
 .sucursales-header::before {
     content: '';
 
@@ -64,6 +76,9 @@
     width: 100%;
     background: #ffffff;
 }
+
+
+/* Efecto de brillo */
 
 .sucursales-header::after {
     content: '';
@@ -95,6 +110,11 @@
     left: 130%;
 }
 
+
+/* =====================================================
+   INFORMACIÓN DEL ENCABEZADO
+===================================================== */
+
 .sucursales-header-left {
     display: flex;
     align-items: center;
@@ -104,6 +124,9 @@
     position: relative;
     z-index: 1;
 }
+
+
+/* Icono */
 
 .sucursales-header-icon {
     width: 38px;
@@ -150,6 +173,9 @@
     transform: scale(1.08);
 }
 
+
+/* Información */
+
 .sucursales-header-information {
     min-width: 0;
 
@@ -159,6 +185,9 @@
 
     flex: 1;
 }
+
+
+/* Título */
 
 .sucursales-title {
     color: #171717 !important;
@@ -177,6 +206,9 @@
     transform: translateX(2px);
 }
 
+
+/* Subtítulo */
+
 .sucursales-subtitle {
     color: #929292 !important;
 
@@ -194,6 +226,11 @@
     color: rgba(255, 255, 255, 0.55) !important;
     transform: translateX(2px);
 }
+
+
+/* =====================================================
+   BOTÓN NUEVA SUCURSAL
+===================================================== */
 
 .sucursales-add-button {
     min-height: 34px !important;
@@ -248,6 +285,11 @@
         scale(1.05);
 }
 
+
+/* =====================================================
+   PANEL PRINCIPAL
+===================================================== */
+
 .sucursales-panel {
     width: 100%;
 
@@ -282,6 +324,11 @@
         0 10px 24px rgba(0, 0, 0, 0.08) !important;
 }
 
+
+/* =====================================================
+   BARRA DE HERRAMIENTAS
+===================================================== */
+
 .sucursales-toolbar {
     display: flex;
     align-items: center;
@@ -294,6 +341,11 @@
     border-bottom:
         1px solid #eeeeee;
 }
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
 
 .sucursales-search {
     width: 300px;
@@ -377,6 +429,9 @@
     transform: scale(1.08);
 }
 
+
+/* Cantidad */
+
 .sucursales-count {
     color: #999999 !important;
 
@@ -386,11 +441,21 @@
     white-space: nowrap;
 }
 
+
+/* =====================================================
+   TABLA
+===================================================== */
+
 .sucursales-table-container {
     width: 100%;
 
     overflow-x: auto;
 }
+
+
+/* =====================================================
+   ENCABEZADO DE TABLA
+===================================================== */
 
 .sucursales-table-header {
     min-width: 700px;
@@ -436,9 +501,19 @@
     justify-content: flex-end;
 }
 
+
+/* =====================================================
+   CUERPO DE TABLA
+===================================================== */
+
 .sucursales-table-body {
     min-width: 700px;
 }
+
+
+/* =====================================================
+   FILA
+===================================================== */
 
 .sucursal-row {
     min-height: 65px;
@@ -478,6 +553,11 @@
         translateX(3px);
 }
 
+
+/* =====================================================
+   INFORMACIÓN DE SUCURSAL
+===================================================== */
+
 .sucursal-name-wrapper {
     display: flex;
     align-items: center;
@@ -486,6 +566,9 @@
 
     min-width: 0;
 }
+
+
+/* Icono de sucursal */
 
 .sucursal-icon {
     width: 32px;
@@ -528,6 +611,9 @@
     transform: scale(1.08);
 }
 
+
+/* Nombre */
+
 .sucursal-name {
     color: #222222 !important;
 
@@ -548,6 +634,9 @@
         translateX(2px);
 }
 
+
+/* ID */
+
 .sucursal-id {
     color: #aaaaaa !important;
 
@@ -567,6 +656,11 @@
     transform:
         translateX(2px);
 }
+
+
+/* =====================================================
+   UBICACIÓN
+===================================================== */
 
 .location-wrapper {
     display: flex;
@@ -617,6 +711,11 @@
         translateX(2px);
 }
 
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
 .status-badge {
     width: fit-content;
 
@@ -639,15 +738,24 @@
         transform 0.25s ease;
 }
 
+
+/* Activa */
+
 .status-active {
     background: #eeeeee;
     color: #222222;
 }
 
+
+/* Inactiva */
+
 .status-inactive {
     background: #f5f5f5;
     color: #999999;
 }
+
+
+/* Punto */
 
 .status-dot {
     width: 5px;
@@ -666,6 +774,9 @@
     background: #999999;
 }
 
+
+/* Hover fila */
+
 .sucursal-row:hover .status-badge {
     background: #ffffff;
 
@@ -681,6 +792,11 @@
     transform:
         scale(1.15);
 }
+
+
+/* =====================================================
+   BOTONES DE ACCIÓN
+===================================================== */
 
 .action-button {
     width: 29px !important;
@@ -728,6 +844,11 @@
         scale(1.05);
 }
 
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
 @keyframes sucursalesAppear {
 
     from {
@@ -765,6 +886,11 @@
     }
 }
 
+
+/* =====================================================
+   ANIMACIÓN DE FILAS
+===================================================== */
+
 .sucursal-row {
     animation:
         rowAppear 0.45s ease both;
@@ -798,6 +924,11 @@
         transform: translateX(0);
     }
 }
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media (max-width: 900px) {
 

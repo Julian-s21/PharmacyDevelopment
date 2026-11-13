@@ -55,8 +55,8 @@ function Finanzas() {
 
     useEffect(() => { cargarDatos(); }, [cargarDatos]);
 
-
-
+    // El responsable puede registrar movimientos en cualquier sucursal. La
+    // sucursal del movimiento se guarda por separado en ID_Sucursal.
     const usuariosResponsables = usuarios;
     useEffect(() => {
         if (!usuariosResponsables.some((usuario) => String(usuario.ID_Usuario) === usuarioSeleccionado)) {

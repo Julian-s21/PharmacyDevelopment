@@ -1,4 +1,52 @@
+/*const sucursalRepository = require('../repositories/sucursal.repository');
 
+const obtenerTodas = async () => {
+    return await sucursalRepository.find();
+};
+
+const obtenerPorId = async (id) => {
+    return await sucursalRepository.findOneBy({
+        ID_Sucursal: id
+    });
+};
+
+const crear = async (datos) => {
+    const sucursal = sucursalRepository.create(datos);
+
+    return await sucursalRepository.save(sucursal);
+};
+
+const actualizar = async (id, datos) => {
+    const sucursal = await obtenerPorId(id);
+
+    if (!sucursal) {
+        return null;
+    }
+
+    Object.assign(sucursal, datos);
+
+    return await sucursalRepository.save(sucursal);
+};
+
+const eliminar = async (id) => {
+    const sucursal = await obtenerPorId(id);
+
+    if (!sucursal) {
+        return null;
+    }
+
+    await sucursalRepository.remove(sucursal);
+
+    return sucursal;
+};
+
+module.exports = {
+    obtenerTodas,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
 
 const sucursalRepository = require('../repositories/sucursal.repository');
 const usuarioRepository = require('../repositories/usuario.repository');

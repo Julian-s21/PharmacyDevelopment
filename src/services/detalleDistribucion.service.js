@@ -1,4 +1,54 @@
+/*const detalleDistribucionRepository =
+    require('../repositories/detalleDistribucion.repository');
 
+const obtenerTodos = async () => {
+    return await detalleDistribucionRepository.find();
+};
+
+const obtenerPorId = async (id) => {
+    return await detalleDistribucionRepository.findOneBy({
+        ID_Detalle_Distribucion: id
+    });
+};
+
+const crear = async (datos) => {
+    const detalleDistribucion =
+        detalleDistribucionRepository.create(datos);
+
+    return await detalleDistribucionRepository.save(detalleDistribucion);
+};
+
+const actualizar = async (id, datos) => {
+    const detalleDistribucion = await obtenerPorId(id);
+
+    if (!detalleDistribucion) {
+        return null;
+    }
+
+    Object.assign(detalleDistribucion, datos);
+
+    return await detalleDistribucionRepository.save(detalleDistribucion);
+};
+
+const eliminar = async (id) => {
+    const detalleDistribucion = await obtenerPorId(id);
+
+    if (!detalleDistribucion) {
+        return null;
+    }
+
+    await detalleDistribucionRepository.remove(detalleDistribucion);
+
+    return detalleDistribucion;
+};
+
+module.exports = {
+    obtenerTodos,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
 
 const detalleDistribucionRepository =
     require('../repositories/detalleDistribucion.repository');
@@ -37,7 +87,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar distribución
     const distribucion =
         await distribucionRepository.findOneBy({
             ID_Distribucion: datos.ID_Distribucion
@@ -50,7 +100,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar medicamento
     const medicamento =
         await medicamentoRepository.findOneBy({
             ID_Medicamento: datos.ID_Medicamento
@@ -63,7 +113,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar cantidad
     const cantidad =
         Number(datos.Cantidad_Distribucion);
 
@@ -74,8 +124,8 @@ async function crear(datos) {
     }
 
 
-
-
+    // Evitar medicamento duplicado dentro
+    // de la misma distribución
     const detalleExistente =
         await detalleDistribucionRepository.findOne({
             where: {

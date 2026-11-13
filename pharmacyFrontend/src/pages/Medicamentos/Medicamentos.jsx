@@ -1,13 +1,13 @@
-
+// ...existing code...
 
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Medicamentos.css";
 
 function Medicamentos() {
-
-
-
+    // ============================================================
+    // ESTADOS
+    // ============================================================
 
     const [medicamentos, setMedicamentos] = useState([]);
     const [busqueda, setBusqueda] = useState("");
@@ -34,9 +34,9 @@ function Medicamentos() {
 
     const [guardandoMedicamento, setGuardandoMedicamento] = useState(false);
 
-
-
-
+    // ============================================================
+    // CARGAR INFORMACIÓN
+    // ============================================================
 
     useEffect(() => {
         cargarMedicamentos();
@@ -110,9 +110,9 @@ function Medicamentos() {
         }
     };
 
-
-
-
+    // ============================================================
+    // FORMULARIO DE MEDICAMENTO
+    // ============================================================
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -176,9 +176,9 @@ function Medicamentos() {
         }
     };
 
-
-
-
+    // ============================================================
+    // FILTRAR MEDICAMENTOS
+    // ============================================================
 
     const medicamentosFiltrados = useMemo(() => {
         const texto = busqueda.toLowerCase().trim();
@@ -198,9 +198,9 @@ function Medicamentos() {
         });
     }, [medicamentos, busqueda]);
 
-
-
-
+    // ============================================================
+    // VER INFORMACIÓN
+    // ============================================================
 
     const verInformacion = async (medicamento) => {
         try {
@@ -222,23 +222,31 @@ function Medicamentos() {
         setMostrarModal(true);
     };
 
-
-
-
+    // ============================================================
+    // CERRAR MODALES
+    // ============================================================
 
     const cerrarModal = () => {
         setMostrarModal(false);
         setMedicamentoSeleccionado(null);
     };
 
-
-
-
+    // ============================================================
+    // RENDER
+    // ============================================================
 
     return (
         <div className="medicamentos-page">
 
-                                  Catálogo de medicamentos, categorías y presentaciones.
+            {/* ==================================================
+                ENCABEZADO
+            ================================================== */}
+
+            <div className="medicamentos-header">
+                <div>
+                    <h1>Medicamentos</h1>
+                    <p>
+                        Catálogo de medicamentos, categorías y presentaciones.
                     </p>
                 </div>
 
@@ -251,7 +259,21 @@ function Medicamentos() {
                 </button>
             </div>
 
-            e="text"
+            {/* ==================================================
+                CONTENEDOR PRINCIPAL
+            ================================================== */}
+
+            <div className="medicamentos-contenedor">
+
+                {/* ==================================================
+                    BARRA DE HERRAMIENTAS
+                ================================================== */}
+
+                <div className="medicamentos-toolbar">
+                    <div className="busqueda-container">
+                        <span className="busqueda-icono">⌕</span>
+                        <input
+                            type="text"
                             placeholder="Buscar medicamento..."
                             value={busqueda}
                             onChange={(e) => setBusqueda(e.target.value)}
@@ -263,9 +285,24 @@ function Medicamentos() {
                     </span>
                 </div>
 
-                            )}
+                {/* ==================================================
+                    ERROR
+                ================================================== */}
 
-                              <p>Cargando medicamentos...</p>
+                {error && (
+                    <div className="mensaje-error">
+                        {error}
+                    </div>
+                )}
+
+                {/* ==================================================
+                    CARGANDO
+                ================================================== */}
+
+                {cargando ? (
+                    <div className="estado-vacio">
+                        <div className="spinner"></div>
+                        <p>Cargando medicamentos...</p>
                     </div>
                 ) : medicamentosFiltrados.length === 0 ? (
                     <div className="estado-vacio">
@@ -327,7 +364,14 @@ function Medicamentos() {
                 )}
             </div>
 
-            l}
+            {/* ==================================================
+                MODAL INFORMACIÓN DEL MEDICAMENTO
+            ================================================== */}
+
+            {mostrarModal && medicamentoSeleccionado && (
+                <div
+                    className="modal-overlay"
+                    onClick={cerrarModal}
                 >
                     <div
                         className="modal-medicamento"
@@ -400,7 +444,14 @@ function Medicamentos() {
                 </div>
             )}
 
-            ario(false)}
+            {/* ==================================================
+                MODAL NUEVO MEDICAMENTO
+            ================================================== */}
+
+            {mostrarFormulario && (
+                <div
+                    className="modal-overlay"
+                    onClick={() => setMostrarFormulario(false)}
                 >
                     <div
                         className="modal-formulario"
@@ -532,7 +583,13 @@ function Medicamentos() {
                 </div>
             )}
 
-            form
+            {/* ==================================================
+                MODAL CATEGORÍA
+            ================================================== */}
+
+            {mostrarCategoria && (
+                <div className="modal-overlay" onClick={() => setMostrarCategoria(false)}>
+                    <form
                         className="modal-formulario"
                         onSubmit={agregarCategoria}
                         onClick={(e) => e.stopPropagation()}
@@ -598,4 +655,4 @@ function Medicamentos() {
 
 export default Medicamentos;
 
-
+// ...existing code...

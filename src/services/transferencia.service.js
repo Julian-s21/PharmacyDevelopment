@@ -1,6 +1,67 @@
+/*const transferenciaRepository =
+    require('../repositories/transferencia.repository');
 
+const obtenerTodas = async () => {
+    return await transferenciaRepository.find();
+};
 
+const obtenerPorId = async (id) => {
+    return await transferenciaRepository.findOneBy({
+        ID_Transferencia: id
+    });
+};
 
+const crear = async (datos) => {
+    const transferencia =
+        transferenciaRepository.create(datos);
+
+    return await transferenciaRepository.save(transferencia);
+};
+
+const actualizar = async (id, datos) => {
+    const transferencia = await obtenerPorId(id);
+
+    if (!transferencia) {
+        return null;
+    }
+
+    Object.assign(transferencia, datos);
+
+    return await transferenciaRepository.save(transferencia);
+};
+
+const eliminar = async (id) => {
+    const transferencia = await obtenerPorId(id);
+
+    if (!transferencia) {
+        return null;
+    }
+
+    await transferenciaRepository.remove(transferencia);
+
+    return transferencia;
+};
+
+module.exports = {
+    obtenerTodas,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
+
+/*const transferenciaRepository =
+    require('../repositories/transferencia.repository');
+
+const sucursalRepository =
+    require('../repositories/sucursal.repository');
+
+const usuarioRepository =
+    require('../repositories/usuario.repository');
+
+const detalleTransferenciaRepository =
+    require('../repositories/detalleTransferencia.repository');
+*/
 
 const AppDataSource =
     require('../config/database');
@@ -58,7 +119,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar sucursal origen
     const sucursalOrigen =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal_Origen
@@ -71,7 +132,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar sucursal destino
     const sucursalDestino =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal_Destino
@@ -84,7 +145,7 @@ async function crear(datos) {
     }
 
 
-
+    // Una sucursal no puede transferirse a sí misma
     if (
         Number(datos.ID_Sucursal_Origen) ===
         Number(datos.ID_Sucursal_Destino)
@@ -95,7 +156,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar usuario
     const usuario =
         await usuarioRepository.findOneBy({
             ID_Usuario: datos.ID_Usuario
@@ -108,7 +169,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar fecha
     if (!datos.Fecha_Transferencia) {
         throw new Error(
             'La fecha de transferencia es obligatoria.'
@@ -186,9 +247,9 @@ async function crearTransferenciaCompleta(datos) {
                 );
 
 
-
-
-
+            // ==========================================
+            // 1. Validar sucursal de origen
+            // ==========================================
 
             const sucursalOrigen =
                 await sucursalRepo.findOneBy({
@@ -203,9 +264,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 2. Validar sucursal destino
+            // ==========================================
 
             const sucursalDestino =
                 await sucursalRepo.findOneBy({
@@ -220,9 +281,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 3. Validar que sean diferentes
+            // ==========================================
 
             if (
                 Number(datos.ID_Sucursal_Origen) ===
@@ -234,9 +295,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 4. Validar usuario
+            // ==========================================
 
             const usuario =
                 await usuarioRepo.findOneBy({
@@ -251,9 +312,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 5. Validar fecha
+            // ==========================================
 
             if (!datos.Fecha_Transferencia) {
                 throw new Error(
@@ -273,9 +334,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 6. Validar detalles
+            // ==========================================
 
             if (
                 !Array.isArray(datos.detalles) ||
@@ -286,9 +347,9 @@ async function crearTransferenciaCompleta(datos) {
                 );
             }
 
-
-
-
+            // ==========================================
+            // 6.1 Validar medicamentos repetidos
+            // ==========================================
 
             const medicamentos = new Set();
 
@@ -307,9 +368,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 7. Crear encabezado
+            // ==========================================
 
             const transferencia =
                 transferenciaRepo.create({
@@ -333,9 +394,9 @@ async function crearTransferenciaCompleta(datos) {
                 );
 
 
-
-
-
+            // ==========================================
+            // 8. Procesar medicamentos
+            // ==========================================
 
             for (const item of datos.detalles) {
 
@@ -355,9 +416,9 @@ async function crearTransferenciaCompleta(datos) {
                 }
 
 
-
-
-
+                // ------------------------------
+                // Buscar medicamento
+                // ------------------------------
 
                 const medicamento =
                     await medicamentoRepo.findOneBy({
@@ -372,9 +433,9 @@ async function crearTransferenciaCompleta(datos) {
                 }
 
 
-
-
-
+                // ------------------------------
+                // Buscar inventario origen
+                // ------------------------------
 
                 const inventarioOrigen =
                     await inventarioRepo.findOne({
@@ -395,9 +456,9 @@ async function crearTransferenciaCompleta(datos) {
                 }
 
 
-
-
-
+                // ------------------------------
+                // Obtener existencia
+                // ------------------------------
 
                 const existenciaOrigen =
                     Number(
@@ -412,9 +473,9 @@ async function crearTransferenciaCompleta(datos) {
                 }
 
 
-
-
-
+                // ------------------------------
+                // Validar existencia
+                // ------------------------------
 
                 if (
                     cantidad >
@@ -426,9 +487,9 @@ async function crearTransferenciaCompleta(datos) {
                 }
 
 
-
-
-
+                // ------------------------------
+                // Buscar inventario destino
+                // ------------------------------
 
                 let inventarioDestino =
                     await inventarioRepo.findOne({
@@ -442,9 +503,9 @@ async function crearTransferenciaCompleta(datos) {
                     });
 
 
-
-
-
+                // ------------------------------
+                // Descontar origen
+                // ------------------------------
 
                 inventarioOrigen.Cantidad_Inventario =
                     existenciaOrigen - cantidad;
@@ -477,9 +538,9 @@ async function crearTransferenciaCompleta(datos) {
                 );
 
 
-
-
-
+                // ------------------------------
+                // Crear inventario destino
+                // ------------------------------
 
                 if (!inventarioDestino) {
 
@@ -542,9 +603,9 @@ async function crearTransferenciaCompleta(datos) {
             );
 
 
-
-
-
+                // ------------------------------
+                // Crear detalle
+                // ------------------------------
 
                 const detalle =
                     detalleRepo.create({
@@ -565,9 +626,9 @@ async function crearTransferenciaCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 9. Retornar transferencia
+            // ==========================================
 
             return transferenciaGuardada;
         }

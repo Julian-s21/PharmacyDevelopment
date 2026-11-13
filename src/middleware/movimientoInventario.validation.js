@@ -9,7 +9,7 @@ const validarMovimientoInventario = (req, res, next) => {
 
     const errores = [];
 
-
+    // Inventario
     if (
         ID_Inventario === undefined ||
         ID_Inventario === null ||
@@ -22,7 +22,7 @@ const validarMovimientoInventario = (req, res, next) => {
         );
     }
 
-
+    // Usuario
     if (
         ID_Usuario === undefined ||
         ID_Usuario === null ||
@@ -35,7 +35,7 @@ const validarMovimientoInventario = (req, res, next) => {
         );
     }
 
-
+    // Tipo de movimiento
     if (
         !Tipo_Movimiento_Inventario ||
         Tipo_Movimiento_Inventario.trim() === ''
@@ -49,7 +49,7 @@ const validarMovimientoInventario = (req, res, next) => {
         );
     }
 
-
+    // Cantidad
     if (
         Cantidad_Movimiento_Inventario === undefined ||
         Cantidad_Movimiento_Inventario === null ||
@@ -74,7 +74,7 @@ const validarMovimientoInventario = (req, res, next) => {
         );
     }
 
-
+    // Fecha
     if (
         !Fecha_Movimiento_Inventario ||
         Fecha_Movimiento_Inventario.trim() === ''

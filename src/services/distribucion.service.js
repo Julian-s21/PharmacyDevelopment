@@ -1,6 +1,68 @@
+/*const distribucionRepository =
+    require('../repositories/distribucion.repository');
 
+const obtenerTodas = async () => {
+    return await distribucionRepository.find();
+};
 
+const obtenerPorId = async (id) => {
+    return await distribucionRepository.findOneBy({
+        ID_Distribucion: id
+    });
+};
 
+const crear = async (datos) => {
+    const distribucion =
+        distribucionRepository.create(datos);
+
+    return await distribucionRepository.save(distribucion);
+};
+
+const actualizar = async (id, datos) => {
+    const distribucion = await obtenerPorId(id);
+
+    if (!distribucion) {
+        return null;
+    }
+
+    Object.assign(distribucion, datos);
+
+    return await distribucionRepository.save(distribucion);
+};
+
+const eliminar = async (id) => {
+    const distribucion = await obtenerPorId(id);
+
+    if (!distribucion) {
+        return null;
+    }
+
+    await distribucionRepository.remove(distribucion);
+
+    return distribucion;
+};
+
+module.exports = {
+    obtenerTodas,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
+
+/*const distribucionRepository =
+    require('../repositories/distribucion.repository');
+
+const sucursalRepository =
+    require('../repositories/sucursal.repository');
+
+const usuarioRepository =
+    require('../repositories/usuario.repository');
+
+const detalleDistribucionRepository =
+    require('../repositories/detalleDistribucion.repository');
+
+*/
 
 const AppDataSource =
     require('../config/database');
@@ -54,7 +116,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar sucursal
     const sucursal =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal
@@ -67,7 +129,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar usuario
     const usuario =
         await usuarioRepository.findOneBy({
             ID_Usuario: datos.ID_Usuario
@@ -80,7 +142,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar fecha
     if (!datos.Fecha_Distribucion) {
         throw new Error(
             'La fecha de distribución es obligatoria.'
@@ -97,7 +159,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar estado
     if (!datos.Estado_Distribucion) {
         throw new Error(
             'El estado de distribución es obligatorio.'
@@ -167,9 +229,9 @@ async function crearDistribucionCompleta(datos) {
                 );
 
 
-
-
-
+            // ==========================================
+            // 1. Validar sucursal
+            // ==========================================
 
             const sucursal =
                 await sucursalRepo.findOneBy({
@@ -184,9 +246,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 2. Validar usuario
+            // ==========================================
 
             const usuario =
                 await usuarioRepo.findOneBy({
@@ -201,9 +263,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 3. Validar fecha
+            // ==========================================
 
             if (!datos.Fecha_Distribucion) {
                 throw new Error(
@@ -223,9 +285,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 4. Validar estado
+            // ==========================================
 
             if (!datos.Estado_Distribucion) {
                 throw new Error(
@@ -256,9 +318,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 5. Validar detalles
+            // ==========================================
 
             if (
                 !Array.isArray(datos.detalles) ||
@@ -270,9 +332,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 6. Validar medicamentos repetidos
+            // ==========================================
 
             const medicamentos =
                 new Set();
@@ -299,9 +361,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 7. Crear distribución
+            // ==========================================
 
             const distribucion =
                 distribucionRepo.create({
@@ -325,9 +387,9 @@ async function crearDistribucionCompleta(datos) {
                 );
 
 
-
-
-
+            // ==========================================
+            // 8. Crear detalles
+            // ==========================================
 
             for (const item of datos.detalles) {
 
@@ -380,9 +442,9 @@ async function crearDistribucionCompleta(datos) {
             }
 
 
-
-
-
+            // ==========================================
+            // 9. Retornar distribución
+            // ==========================================
 
             return distribucionGuardada;
         }
@@ -401,8 +463,8 @@ async function actualizar(id, datos) {
     }
 
 
-
-
+    // Una distribución registrada forma parte
+    // del historial operativo.
     throw new Error(
         'Las distribuciones no pueden modificarse una vez registradas.'
     );

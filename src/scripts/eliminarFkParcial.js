@@ -8,7 +8,7 @@ async function eliminarFkParcial() {
 
         const nombreFk = 'FK_951a64f31b65ef3003fc268f362';
 
-
+        // Verificar que la FK exista
         const fk = await AppDataSource.query(`
             SELECT
                 constraint_name,
@@ -26,7 +26,7 @@ async function eliminarFkParcial() {
         console.log(`FK encontrada: ${nombreFk}`);
         console.log(`Tabla: ${fk[0].TABLE_NAME}`);
 
-
+        // Eliminar únicamente la FK parcial
         await AppDataSource.query(`
             ALTER TABLE "MEDICAMENTO"
             DROP CONSTRAINT "${nombreFk}"

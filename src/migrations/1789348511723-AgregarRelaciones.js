@@ -1,10 +1,18 @@
+/**
+ * @typedef {import('typeorm').MigrationInterface} MigrationInterface
+ * @typedef {import('typeorm').QueryRunner} QueryRunner
+ */
 
-
-
+/**
+ * @class
+ * @implements {MigrationInterface}
+ */
 module.exports = class AgregarRelaciones1789348511723 {
     name = 'AgregarRelaciones1789348511723'
 
-
+    /**
+     * @param {QueryRunner} queryRunner
+     */
     async up(queryRunner) {
         await queryRunner.query(`ALTER TABLE "MEDICAMENTO" ADD CONSTRAINT "FK_951a64f31b65ef3003fc268f362" FOREIGN KEY ("ID_Categoria") REFERENCES "CATEGORIA_MEDICAMENTO" ("ID_Categoria")`);
         await queryRunner.query(`ALTER TABLE "INVENTARIO" ADD CONSTRAINT "FK_a5d25a0234942d7e2632d88c84b" FOREIGN KEY ("ID_Sucursal") REFERENCES "SUCURSAL" ("ID_Sucursal")`);
@@ -28,7 +36,9 @@ module.exports = class AgregarRelaciones1789348511723 {
         await queryRunner.query(`ALTER TABLE "FLUJO_EFECTIVO" ADD CONSTRAINT "FK_96315558e089e821e91526891c1" FOREIGN KEY ("ID_Sucursal") REFERENCES "SUCURSAL" ("ID_Sucursal")`);
     }
 
-
+    /**
+     * @param {QueryRunner} queryRunner
+     */
     async down(queryRunner) {
         await queryRunner.query(`ALTER TABLE "FLUJO_EFECTIVO" DROP CONSTRAINT "FK_96315558e089e821e91526891c1"`);
         await queryRunner.query(`ALTER TABLE "ACTIVO_FIJO" DROP CONSTRAINT "FK_93ac582cc1e33d59e9e41cdbdc0"`);

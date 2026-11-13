@@ -1,4 +1,54 @@
+/*const movimientoFinancieroRepository =
+    require('../repositories/movimientoFinanciero.repository');
 
+const obtenerTodos = async () => {
+    return await movimientoFinancieroRepository.find();
+};
+
+const obtenerPorId = async (id) => {
+    return await movimientoFinancieroRepository.findOneBy({
+        ID_Movimiento_Financiero: id
+    });
+};
+
+const crear = async (datos) => {
+    const movimiento =
+        movimientoFinancieroRepository.create(datos);
+
+    return await movimientoFinancieroRepository.save(movimiento);
+};
+
+const actualizar = async (id, datos) => {
+    const movimiento = await obtenerPorId(id);
+
+    if (!movimiento) {
+        return null;
+    }
+
+    Object.assign(movimiento, datos);
+
+    return await movimientoFinancieroRepository.save(movimiento);
+};
+
+const eliminar = async (id) => {
+    const movimiento = await obtenerPorId(id);
+
+    if (!movimiento) {
+        return null;
+    }
+
+    await movimientoFinancieroRepository.remove(movimiento);
+
+    return movimiento;
+};
+
+module.exports = {
+    obtenerTodos,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
 const movimientoFinancieroRepository =
     require('../repositories/movimientoFinanciero.repository');
 
@@ -36,7 +86,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar sucursal
     const sucursal =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal
@@ -49,7 +99,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar usuario
     const usuario =
         await usuarioRepository.findOneBy({
             ID_Usuario: datos.ID_Usuario
@@ -62,7 +112,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar tipo
     if (!datos.Tipo_Movimiento_Financiero) {
         throw new Error(
             'El tipo de movimiento financiero es obligatorio.'
@@ -82,7 +132,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar concepto
     if (!datos.Concepto_Movimiento_Financiero) {
         throw new Error(
             'El concepto del movimiento financiero es obligatorio.'
@@ -101,7 +151,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar monto
     const monto =
         Number(datos.Monto_Movimiento_Financiero);
 
@@ -112,7 +162,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar fecha
     if (!datos.Fecha_Movimiento_Financiero) {
         throw new Error(
             'La fecha del movimiento financiero es obligatoria.'
@@ -169,8 +219,8 @@ async function actualizar(id, datos) {
     }
 
 
-
-
+    // Los movimientos financieros representan
+    // operaciones históricas.
     throw new Error(
         'Los movimientos financieros no pueden modificarse una vez registrados.'
     );

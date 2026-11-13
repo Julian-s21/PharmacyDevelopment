@@ -1,4 +1,54 @@
+/*const gastoPlanillaRepository =
+    require('../repositories/gastoPlanilla.repository');
 
+const obtenerTodos = async () => {
+    return await gastoPlanillaRepository.find();
+};
+
+const obtenerPorId = async (id) => {
+    return await gastoPlanillaRepository.findOneBy({
+        ID_Gasto_Planilla: id
+    });
+};
+
+const crear = async (datos) => {
+    const gastoPlanilla =
+        gastoPlanillaRepository.create(datos);
+
+    return await gastoPlanillaRepository.save(gastoPlanilla);
+};
+
+const actualizar = async (id, datos) => {
+    const gastoPlanilla = await obtenerPorId(id);
+
+    if (!gastoPlanilla) {
+        return null;
+    }
+
+    Object.assign(gastoPlanilla, datos);
+
+    return await gastoPlanillaRepository.save(gastoPlanilla);
+};
+
+const eliminar = async (id) => {
+    const gastoPlanilla = await obtenerPorId(id);
+
+    if (!gastoPlanilla) {
+        return null;
+    }
+
+    await gastoPlanillaRepository.remove(gastoPlanilla);
+
+    return gastoPlanilla;
+};
+
+module.exports = {
+    obtenerTodos,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
 
 const gastoPlanillaRepository =
     require('../repositories/gastoPlanilla.repository');
@@ -37,7 +87,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar sucursal
     const sucursal =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal
@@ -50,7 +100,7 @@ async function crear(datos) {
     }
 
 
-
+    // Verificar usuario
     const usuario =
         await usuarioRepository.findOneBy({
             ID_Usuario: datos.ID_Usuario
@@ -63,7 +113,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar salario
     const salario =
         Number(datos.Salario_Planilla);
 
@@ -74,7 +124,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar deducciones
     const deducciones =
         datos.Deducciones_Planilla === undefined ||
         datos.Deducciones_Planilla === null
@@ -88,7 +138,7 @@ async function crear(datos) {
     }
 
 
-
+    // Las deducciones no pueden superar el salario
     if (deducciones > salario) {
         throw new Error(
             'Las deducciones no pueden ser mayores que el salario.'
@@ -96,11 +146,11 @@ async function crear(datos) {
     }
 
 
-
+    // Calcular automáticamente el total
     const total = salario - deducciones;
 
 
-
+    // Validar fecha
     if (!datos.Fecha_Planilla) {
         throw new Error(
             'La fecha de planilla es obligatoria.'
@@ -157,7 +207,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // La planilla registrada forma parte del historial financiero.
     throw new Error(
         'Los gastos de planilla no pueden modificarse una vez registrados.'
     );

@@ -3,7 +3,7 @@ require('reflect-metadata');
 const { DataSource } = require('typeorm');
 require('dotenv').config();
 
-
+// Modelos
 const Sucursal = require('../models/sucursal.model');
 const Usuario = require('../models/usuario.model');
 const CategoriaMedicamento = require('../models/categoriaMedicamento.model');
@@ -58,7 +58,7 @@ const AppDataSource = new DataSource({
     migrations: [
     __dirname + '/../migrations/*.js'
     ],
-
+    
     synchronize: false,
 
     logging: true
@@ -66,4 +66,34 @@ const AppDataSource = new DataSource({
 
 module.exports = AppDataSource;
 
+/*const AppDataSource = new DataSource({
+    type: 'oracle',
+    username: process.env.ORACLE_USER,
+    password: process.env.ORACLE_PASSWORD,
+    connectString: process.env.ORACLE_CONNECT_STRING,
 
+    entities: [
+        Sucursal,
+        Usuario,
+        CategoriaMedicamento,
+        Medicamento,
+        Inventario,
+        MovimientoInventario,
+        Transferencia,
+        DetalleTransferencia,
+        Distribucion,
+        DetalleDistribucion,
+        MovimientoFinanciero,
+        GastoPlanilla,
+        ActivoFijo,
+        FlujoEfectivo
+    ],
+
+    migrations: [
+        __dirname + '/../migrations/*.{js,ts}'
+    ],
+
+    synchronize: false,
+
+    logging: true
+});*/

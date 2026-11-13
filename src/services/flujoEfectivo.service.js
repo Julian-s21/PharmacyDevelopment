@@ -1,4 +1,54 @@
+/*const flujoEfectivoRepository =
+    require('../repositories/flujoEfectivo.repository');
 
+const obtenerTodos = async () => {
+    return await flujoEfectivoRepository.find();
+};
+
+const obtenerPorId = async (id) => {
+    return await flujoEfectivoRepository.findOneBy({
+        ID_Flujo_Efectivo: id
+    });
+};
+
+const crear = async (datos) => {
+    const flujo =
+        flujoEfectivoRepository.create(datos);
+
+    return await flujoEfectivoRepository.save(flujo);
+};
+
+const actualizar = async (id, datos) => {
+    const flujo = await obtenerPorId(id);
+
+    if (!flujo) {
+        return null;
+    }
+
+    Object.assign(flujo, datos);
+
+    return await flujoEfectivoRepository.save(flujo);
+};
+
+const eliminar = async (id) => {
+    const flujo = await obtenerPorId(id);
+
+    if (!flujo) {
+        return null;
+    }
+
+    await flujoEfectivoRepository.remove(flujo);
+
+    return flujo;
+};
+
+module.exports = {
+    obtenerTodos,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar
+};*/
 
 const flujoEfectivoRepository =
     require('../repositories/flujoEfectivo.repository');
@@ -35,7 +85,7 @@ async function obtenerPorId(id) {
 
 async function crear(datos) {
 
-
+    // Verificar sucursal
     const sucursal =
         await sucursalRepository.findOneBy({
             ID_Sucursal: datos.ID_Sucursal
@@ -48,7 +98,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar fecha inicial
     if (!datos.Fecha_Inicio_Flujo) {
         throw new Error(
             'La fecha de inicio del flujo es obligatoria.'
@@ -65,7 +115,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar fecha final
     if (!datos.Fecha_Fin_Flujo) {
         throw new Error(
             'La fecha de finalización del flujo es obligatoria.'
@@ -82,7 +132,7 @@ async function crear(datos) {
     }
 
 
-
+    // El período debe ser válido
     if (fechaFin < fechaInicio) {
         throw new Error(
             'La fecha de finalización no puede ser anterior a la fecha de inicio.'
@@ -90,7 +140,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar ingresos
     const ingresos =
         Number(datos.Total_Ingresos_Flujo);
 
@@ -101,7 +151,7 @@ async function crear(datos) {
     }
 
 
-
+    // Validar egresos
     const egresos =
         Number(datos.Total_Egresos_Flujo);
 
@@ -112,7 +162,7 @@ async function crear(datos) {
     }
 
 
-
+    // El saldo se calcula automáticamente
     const saldo =
         ingresos - egresos;
 
@@ -155,7 +205,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Actualizar sucursal
     if (datos.ID_Sucursal !== undefined) {
 
         const sucursal =
@@ -174,7 +224,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Actualizar fecha inicial
     if (datos.Fecha_Inicio_Flujo !== undefined) {
 
         const fechaInicio =
@@ -191,7 +241,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Actualizar fecha final
     if (datos.Fecha_Fin_Flujo !== undefined) {
 
         const fechaFin =
@@ -208,7 +258,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Validar período después de posibles cambios
     if (
         flujo.Fecha_Fin_Flujo <
         flujo.Fecha_Inicio_Flujo
@@ -219,7 +269,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Actualizar ingresos
     if (datos.Total_Ingresos_Flujo !== undefined) {
 
         const ingresos =
@@ -236,7 +286,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Actualizar egresos
     if (datos.Total_Egresos_Flujo !== undefined) {
 
         const egresos =
@@ -253,7 +303,7 @@ async function actualizar(id, datos) {
     }
 
 
-
+    // Recalcular saldo
     flujo.Saldo_Flujo =
         Number(flujo.Total_Ingresos_Flujo) -
         Number(flujo.Total_Egresos_Flujo);
